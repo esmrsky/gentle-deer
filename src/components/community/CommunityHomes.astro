@@ -1,0 +1,53 @@
+---
+interface Props {
+  community: {
+    name: string;
+    homes: Array<{
+      image: string;
+      tag: string;
+      price: string;
+      address: string;
+      specs: string;
+      url: string;
+    }>;
+  };
+}
+
+const { community } = Astro.props;
+---
+
+<section class="bg-background py-16 md:py-24">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <h3 class="text-[12px] font-bold tracking-widest text-accent uppercase mb-2">
+      Homes available in {community.name}.
+    </h3>
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+      <p class="text-muted-foreground text-[14px]">
+        <a href="/shop-homes" class="text-primary hover:underline">See all homes</a>
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {community.homes.map((home) => (
+        <a href={home.url} class="card group hover:-translate-y-0.5 hover:shadow-md transition-all no-underline">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              src={home.image}
+              alt={home.address}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <span class="absolute top-3 right-3 bg-accent text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">
+              {home.tag}
+            </span>
+          </div>
+          <div class="p-5">
+            <p class="text-[24px] font-semibold text-foreground mb-1">{home.price}</p>
+            <p class="text-[14px] text-muted-foreground mb-1">{home.address}</p>
+            <p class="text-[14px] text-foreground mb-4">{home.specs}</p>
+            <span class="text-[14px] text-primary font-semibold group-hover:underline">View Home →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

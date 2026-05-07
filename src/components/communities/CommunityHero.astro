@@ -1,0 +1,103 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  location: string;
+  phone: string;
+  communityType: string;
+  established: string;
+  petPolicy: string;
+  officeHours: string;
+  heroImage: string;
+  badge?: string;
+}
+
+const {
+  title,
+  subtitle,
+  location,
+  phone,
+  communityType,
+  established,
+  petPolicy,
+  officeHours,
+  heroImage,
+  badge,
+} = Astro.props;
+---
+
+<section class="relative bg-dark overflow-hidden">
+  <div class="absolute inset-0">
+    <img
+      src={heroImage}
+      alt={title}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+  </div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 py-16 md:py-24">
+    <div class="max-w-[800px]">
+      {badge && (
+        <span class="inline-block bg-accent text-white text-[11px] font-bold tracking-[0.15em] uppercase px-3 py-1.5 rounded-[4px] mb-6">
+          {badge}
+        </span>
+      )}
+
+      <p class="text-dark-muted text-[12px] font-semibold tracking-[0.15em] uppercase mb-3">
+        {subtitle}
+      </p>
+
+      <h1 class="text-[40px] md:text-[48px] font-semibold text-white leading-tight mb-2">
+        {title}
+      </h1>
+
+      <p class="text-white/80 text-lg mb-6">
+        {location}
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={`tel:${phone.replace(/\D/g, '')}`}
+          class="bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+        >
+          See Availability
+        </a>
+        <a
+          href="/#"
+          class="text-primary text-[15px] font-semibold hover:underline"
+        >
+          Already a Resident?
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface border-b border-border">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="flex flex-wrap">
+      <div class="py-5 pr-8 border-r border-border">
+        <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-1">Community Type</p>
+        <p class="text-[14px] font-semibold text-foreground">{communityType}</p>
+      </div>
+
+      <div class="py-5 px-8 border-r border-border">
+        <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-1">Established</p>
+        <p class="text-[14px] font-semibold text-foreground">{established}</p>
+      </div>
+
+      <div class="py-5 px-8 border-r border-border">
+        <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-1">Pet Policy</p>
+        <p class="text-[14px] font-semibold text-foreground">{petPolicy}</p>
+      </div>
+
+      <div class="py-5 pl-8">
+        <p class="text-[10px] font-semibold tracking-[0.12em] uppercase text-muted-foreground mb-1">Office Hours</p>
+        <p class="text-[14px] font-semibold text-foreground">{officeHours}</p>
+      </div>
+    </div>
+  </div>
+</section>

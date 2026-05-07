@@ -1,0 +1,76 @@
+---
+import Container from '@/components/Container.astro';
+---
+
+<section id="companies-hero" class="bg-dark py-[80px]">
+  <Container class="max-w-[1200px]">
+    <div class="text-center mb-12">
+      <img
+        src="https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-1024.webp"
+        alt="Greenlawn Companies"
+        class="w-[180px] h-auto mx-auto mb-8"
+      />
+      <p class="text-accent text-[14px] font-bold tracking-widest uppercase mb-4">Homes. RV. Transport.</p>
+      <h1 class="text-[40px] font-serif font-semibold text-dark-foreground leading-tight">
+        One family, three businesses.
+      </h1>
+    </div>
+  </Container>
+</section>
+
+<section id="businesses" class="bg-background py-[80px]">
+  <Container class="max-w-[1200px]">
+    <div class="text-center mb-12">
+      <h2 class="text-[40px] font-serif font-semibold text-foreground mb-4">Our Family of Businesses</h2>
+      <p class="text-[18px] text-muted-foreground max-w-[700px] mx-auto">
+        Three distinct businesses, one shared commitment to Central Ohio families.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Greenlawn Homes -->
+      <div class="bg-surface rounded-[8px] border border-border p-8 text-center">
+        <div class="w-[60px] h-[60px] bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <h3 class="text-[24px] font-serif font-semibold text-foreground mb-3">Greenlawn Homes</h3>
+        <p class="text-[16px] text-muted-foreground leading-relaxed mb-6">
+          Central Ohio's trusted manufactured home dealer. We sell, finance, and manage communities across 9 neighborhoods — helping families find affordable, quality homes since 1985.
+        </p>
+        <a href="https://greenlawnhomes-udyhps8u.manus.space/" class="text-primary text-[14px] font-semibold hover:underline">
+          Visit Greenlawn Homes →
+        </a>
+      </div>
+
+      <!-- Greenlawn RV -->
+      <div class="bg-surface rounded-[8px] border border-border p-8 text-center">
+        <div class="w-[60px] h-[60px] bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+          </svg>
+        </div>
+        <h3 class="text-[24px] font-serif font-semibold text-foreground mb-3">Greenlawn RV</h3>
+        <p class="text-[16px] text-muted-foreground leading-relaxed mb-6">
+          RV sales, service, and storage serving Central Ohio. Whether you're a weekend warrior or a full-time traveler, Greenlawn RV has the rig and the support to keep you moving.
+        </p>
+        <span class="text-muted-foreground text-[14px] font-semibold">Visit Greenlawn RV →</span>
+      </div>
+
+      <!-- Greenlawn Transport -->
+      <div class="bg-surface rounded-[8px] border border-border p-8 text-center">
+        <div class="w-[60px] h-[60px] bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+          </svg>
+        </div>
+        <h3 class="text-[24px] font-serif font-semibold text-foreground mb-3">Greenlawn Transport</h3>
+        <p class="text-[16px] text-muted-foreground leading-relaxed mb-6">
+          Specialized transport for manufactured homes and oversized loads across Ohio and the Midwest. Licensed, insured, and experienced in the unique logistics of home delivery and placement.
+        </p>
+        <span class="text-muted-foreground text-[14px] font-semibold">Visit Greenlawn Transport →</span>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/community/CommunityHero.astro';
+import CommunityFeatures from '@/components/community/CommunityFeatures.astro';
+import CommunityHomes from '@/components/community/CommunityHomes.astro';
+import CommunityResident from '@/components/community/CommunityResident.astro';
+import CommunityRelated from '@/components/community/CommunityRelated.astro';
+
+const community = {
+  name: 'Enchanted Acres',
+  tagline: '55+ COMMUNITY',
+  location: 'Central Ohio',
+  phone: '(614) 491-7742',
+  phoneRaw: '6144917742',
+  established: '1998',
+  communityType: '55+ Community',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  address: '4510 Parsons Ave, Columbus, OH 43207',
+  description: "Easy living, good neighbors. Enchanted Acres was built for people who have earned an easier chapter. Quiet streets, walking paths, and neighbors who know your name and your dog's name too.",
+  description2: 'Come for the pace, stay for the community. Holiday dinners in the clubhouse, front-porch evenings, and the kind of quiet you cannot put a price on. For residents 55 and older, Enchanted Acres offers a welcoming environment where you can slow down, connect with neighbors, and enjoy the best years of your life.',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-1536.webp',
+  features: [
+    { title: 'Clubhouse', description: 'For gatherings, events, and community dinners.' },
+    { title: 'Walking Paths', description: 'Maintained paths throughout the community.' },
+    { title: 'Community Events', description: 'Hosted year-round.' },
+    { title: 'Gardening Area', description: 'Community garden plots available.' },
+    { title: 'Quiet Streets', description: 'A peaceful, low-traffic environment.' },
+    { title: '55+ Age Restricted', description: 'A community designed for your stage of life.' },
+  ],
+  homesCount: 3,
+  homes: [
+    {
+      image: 'https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp',
+      tag: 'Pre-Owned',
+      price: '$78,900',
+      address: '4510 Parsons Ave #18, Columbus, OH',
+      specs: '3 bed · 2 bath · 1,344 sqft',
+      url: '/homes/7',
+    },
+    {
+      image: 'https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp',
+      tag: 'New',
+      price: '$168,500',
+      address: '4510 Parsons Ave #42, Columbus, OH',
+      specs: '4 bed · 2 bath · 1,920 sqft',
+      url: '/homes/12',
+    },
+  ],
+  relatedCommunities: [
+    {
+      label: 'AFFORDABLE LIVING',
+      name: 'Big Run Bluffs',
+      location: 'Central Ohio',
+      url: '/communities/big-run-bluffs',
+    },
+    {
+      label: 'ESTABLISHED NEIGHBORHOOD',
+      name: 'Parsons Mobile Home Park',
+      location: 'Central Ohio',
+      url: '/communities/parsons-mobile-home-park',
+    },
+    {
+      label: 'SMALL TOWN LIVING',
+      name: 'Washington Manor',
+      location: 'Washington Court House, Ohio',
+      url: '/communities/washington-manor',
+    },
+  ],
+};
+---
+
+<BaseLayout title="Enchanted Acres | Greenlawn Homes" description="A 55+ manufactured home community in Central Ohio.">
+  <CommunityHero community={community} />
+  <CommunityFeatures community={community} />
+  <CommunityHomes community={community} />
+  <CommunityResident community={community} />
+  <CommunityRelated communities={community.relatedCommunities} />
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Wagon Wheel',
+  subtitle: 'RURAL RETREAT',
+  location: 'Mt Sterling, Ohio',
+  phone: '(740) 954-9259',
+  communityType: 'All ages',
+  established: '1994',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  badge: undefined,
+};
+
+const description = `Wagon Wheel is Central Ohio's best-kept secret for rural living. Spacious lots, scenic surroundings, and the kind of quiet that only comes from being out in the country — all while staying connected to Columbus.
+
+Paved streets and on-site management mean you never sacrifice reliability for peace. Pet-friendly policies and a welcoming community make Wagon Wheel a place where people stay for years.
+
+If you are looking for a rural retreat that still feels like home, Wagon Wheel is the answer.`;
+
+const features = [
+  { label: 'Rural Setting', description: 'Country Ohio at its most peaceful.' },
+  { label: 'Spacious Lots', description: 'Room between you and your neighbors.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'Paved Streets', description: 'Well-maintained roads throughout.' },
+  { label: 'On-site Management', description: 'Responsive team always available.' },
+  { label: 'Scenic Surroundings', description: 'Beautiful rural Ohio landscape.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp',
+    status: 'Pre-Owned',
+    price: '$38,500',
+    address: '13380 Tenny Rd #7, Mt Sterling, OH',
+    specs: '2 bed · 1 bath · 840 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/2',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: 'COUNTRY LIVING',
+    name: 'Foxlair Farms',
+    location: 'Orient, Ohio',
+    url: '/communities/foxlair-farms',
+  },
+  {
+    category: 'EASTSIDE COMMUNITY',
+    name: 'Willowbrook Terrace',
+    location: 'Etna, Ohio',
+    url: '/communities/willowbrook-terrace',
+  },
+  {
+    category: 'SMALL TOWN LIVING',
+    name: 'Washington Manor',
+    location: 'Washington Court House, Ohio',
+    url: '/communities/washington-manor',
+  },
+];
+---
+
+<BaseLayout title="Wagon Wheel | Greenlawn Homes" description="Wagon Wheel is Central Ohio's best-kept secret for rural living. Spacious lots, scenic surroundings, and the kind of quiet that only comes from being out in the country.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          Country quiet, close to home.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">13380 Tenny Rd, Mt Sterling, OH 43143</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:7409549259" class="text-primary hover:underline font-semibold">(740) 954-9259</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">2 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Wagon Wheel" />
+  <ResidentSection phone="(740) 954-9259" managerName="[TBD Manager Name]" communityName="Wagon Wheel" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

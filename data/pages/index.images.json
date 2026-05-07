@@ -1,0 +1,307 @@
+[
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo_738c0869.svg",
+    "altText": "Greenlawn Homes",
+    "context": "A family-run Central Ohio manufactured home dealer and community operator. Proud dealer of Redman Ho",
+    "isLogo": true,
+    "originalWidth": 0,
+    "originalHeight": 0,
+    "variants": []
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp",
+    "altText": "Ohio family home",
+    "context": "A family-run Central Ohio manufactured home dealer and community operator. Proud dealer of Redman Ho",
+    "isLogo": false,
+    "originalWidth": 1920,
+    "originalHeight": 1072,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp",
+    "altText": "Parsons Mobile Home Park home",
+    "context": "Section: Homes available now. | Pre-Owned",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp",
+    "altText": "Wagon Wheel home",
+    "context": "Section: Homes available now. | Pre-Owned",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp",
+    "altText": "Parsons Mobile Home Park home",
+    "context": "Section: Homes available now. | Pre-Owned",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1536.webp",
+    "altText": "Washington Manor home",
+    "context": "Section: Homes available now. | Pre-Owned",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp",
+    "altText": "Big Run Bluffs home",
+    "context": "Section: Homes available now. | Pre-Owned",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-1536.webp",
+    "altText": "Enchanted Acres",
+    "context": "Section: Our communities. | BUILD NEW",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-1536.webp",
+    "altText": "Buckeye Lake Estates",
+    "context": "Section: Our communities. | BUILD NEW",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-1536.webp",
+    "altText": "Family business Ohio",
+    "context": "Section: Already a Greenlawn resident? | Greenlawn started as a family operation and still runs that way. We take pride in knowing our reside",
+    "isLogo": false,
+    "originalWidth": 2752,
+    "originalHeight": 1536,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-1536.webp",
+        "width": 1536
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/judhpwyXPDYlhlaH-320.webp",
+        "width": 320
+      }
+    ]
+  },
+  {
+    "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-1024.webp",
+    "altText": "Greenlawn Homes",
+    "context": "Section: Come see us. | A family-run Central Ohio manufactured home dealer and community operator. Proud dealer of Redman Ho",
+    "isLogo": false,
+    "originalWidth": 1360,
+    "originalHeight": 440,
+    "variants": [
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-1024.webp",
+        "width": 1024
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-768.webp",
+        "width": 768
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-640.webp",
+        "width": 640
+      },
+      {
+        "url": "https://cdn.pagesmith.app/69b93246/images/greenlawn-logo-color_6d9219bc-320.webp",
+        "width": 320
+      }
+    ]
+  }
+]

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Casal Court',
+  subtitle: 'QUIET STREETS',
+  location: 'Central Ohio',
+  phone: '(614) 725-1289',
+  communityType: 'All ages',
+  established: '1992',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  badge: undefined,
+};
+
+const description = `Casal Court is one of Greenlawn's smaller communities — and that is exactly what makes it special. A tight-knit group of neighbors, quiet cul-de-sac streets, and on-site management that knows every resident by name.
+
+Located in Columbus, Casal Court offers the feel of a private neighborhood with the affordability of manufactured home living. Community parking, well-maintained grounds, and a central location round out the package.
+
+If you value peace, privacy, and a genuine sense of community, Casal Court is worth a look.`;
+
+const features = [
+  { label: 'Quiet Cul-de-sac', description: 'Low traffic, private feel.' },
+  { label: 'On-site Management', description: 'Responsive team always nearby.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'Central Columbus', description: 'Easy access to shopping and services.' },
+  { label: 'Well Maintained', description: 'Grounds kept in excellent condition.' },
+  { label: 'Community Parking', description: 'Ample parking for residents and guests.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp',
+    status: 'Pre-Owned',
+    price: '$71,800',
+    address: '654 Stimmel Rd #5, Columbus, OH',
+    specs: '3 bed · 1 bath · 1,152 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/6',
+  },
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp',
+    status: 'Pre-Owned',
+    price: '$94,500',
+    address: '654 Stimmel Rd #11, Columbus, OH',
+    specs: '3 bed · 2 bath · 1,456 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/8',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: 'AFFORDABLE LIVING',
+    name: 'Big Run Bluffs',
+    location: 'Central Ohio',
+    url: '/communities/big-run-bluffs',
+  },
+  {
+    category: '55+ COMMUNITY',
+    name: 'Enchanted Acres',
+    location: 'Central Ohio',
+    url: '/communities/enchanted-acres',
+  },
+  {
+    category: 'ESTABLISHED NEIGHBORHOOD',
+    name: 'Parsons Mobile Home Park',
+    location: 'Central Ohio',
+    url: '/communities/parsons-mobile-home-park',
+  },
+];
+---
+
+<BaseLayout title="Casal Court | Greenlawn Homes" description="Casal Court is one of Greenlawn's smaller communities — and that is exactly what makes it special. A tight-knit group of neighbors, quiet cul-de-sac streets, and on-site management.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          Small community, big welcome.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">654 Stimmel Rd, Columbus, OH 43223</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:6147251289" class="text-primary hover:underline font-semibold">(614) 725-1289</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">2 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Casal Court" />
+  <ResidentSection phone="(614) 725-1289" managerName="[TBD Manager Name]" communityName="Casal Court" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

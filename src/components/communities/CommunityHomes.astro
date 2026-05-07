@@ -1,0 +1,63 @@
+---
+export interface Props {
+  homes: Array<{
+    image: string;
+    status: string;
+    price: string;
+    address: string;
+    specs: string;
+    url: string;
+  }>;
+  communityName: string;
+}
+
+const { homes, communityName } = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-background">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <h2 class="text-[28px] font-semibold text-foreground mb-8">
+      Homes available in {communityName}.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {homes.map((home) => (
+        <a
+          href={home.url}
+          class="card group hover:-translate-y-0.5 hover:shadow-md transition-all duration-300"
+        >
+          <div class="relative aspect-[16/10] overflow-hidden bg-secondary">
+            <img
+              src={home.image}
+              alt={home.address}
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            {home.status && (
+              <span class="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-bl-[4px]">
+                {home.status}
+              </span>
+            )}
+          </div>
+
+          <div class="p-4">
+            <p class="text-[22px] font-semibold text-foreground mb-1">{home.price}</p>
+            <p class="text-[14px] text-muted-foreground mb-2">{home.specs}</p>
+            <p class="text-[14px] text-foreground">{home.address}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/shop-homes"
+        class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+      >
+        See all homes
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

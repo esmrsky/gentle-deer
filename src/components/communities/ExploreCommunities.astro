@@ -1,0 +1,43 @@
+---
+export interface Props {
+  communities: Array<{
+    category: string;
+    name: string;
+    location: string;
+    url: string;
+  }>;
+}
+
+const { communities } = Astro.props;
+---
+
+<section class="py-16 md:py-20 bg-background">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <h2 class="text-[28px] font-semibold text-foreground mb-10">
+      Explore other communities.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {communities.map((community) => (
+        <a
+          href={community.url}
+          class="card group hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 p-5"
+        >
+          <p class="text-[10px] font-semibold tracking-[0.15em] uppercase text-muted-foreground mb-2">
+            {community.category}
+          </p>
+          <h3 class="text-[18px] font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+            {community.name}
+          </h3>
+          <p class="text-[14px] text-muted-foreground mb-3">{community.location}</p>
+          <span class="inline-flex items-center gap-1 text-primary text-[14px] font-semibold group-hover:underline">
+            See availability
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

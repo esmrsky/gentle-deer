@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/community/CommunityHero.astro';
+import CommunityFeatures from '@/components/community/CommunityFeatures.astro';
+import CommunityHomes from '@/components/community/CommunityHomes.astro';
+import CommunityResident from '@/components/community/CommunityResident.astro';
+import CommunityRelated from '@/components/community/CommunityRelated.astro';
+
+const community = {
+  name: 'Parsons Mobile Home Park',
+  tagline: 'ESTABLISHED NEIGHBORHOOD',
+  location: 'Central Ohio',
+  phone: '(614) 725-1277',
+  phoneRaw: '6147251277',
+  established: '1975',
+  communityType: 'All ages',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  address: '2745 Parsons Ave, Columbus, OH 43207',
+  description: 'A neighborhood with roots. Parsons Mobile Home Park has been a cornerstone of the South Columbus community for decades. Mature trees, paved streets, and a central location make this one of the most sought-after addresses in our portfolio.',
+  description2: 'Residents appreciate the convenience — public transit at the doorstep, shopping nearby, and a central Columbus location that puts everything within reach. This is a neighborhood with history and heart. If you are looking for a community that feels settled and established, Parsons is worth a visit.',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  features: [
+    { title: 'On-site Management', description: 'Responsive, friendly team always available.' },
+    { title: 'Mature Trees', description: 'Shaded streets and natural beauty.' },
+    { title: 'Paved Streets', description: 'Well-maintained roads throughout.' },
+    { title: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+    { title: 'Central Columbus', description: 'Minutes from downtown and major highways.' },
+    { title: 'Public Transit Nearby', description: 'COTA bus access from the community.' },
+  ],
+  homesCount: 2,
+  homes: [
+    {
+      image: 'https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp',
+      tag: 'Pre-Owned',
+      price: '$29,900',
+      address: '2745 Parsons Ave #12, Columbus, OH',
+      specs: '1 bed · 1 bath · 620 sqft',
+      url: '/homes/1',
+    },
+    {
+      image: 'https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp',
+      tag: 'Pre-Owned',
+      price: '$47,900',
+      address: '2745 Parsons Ave #31, Columbus, OH',
+      specs: '2 bed · 1 bath · 864 sqft',
+      url: '/homes/3',
+    },
+  ],
+  relatedCommunities: [
+    {
+      label: 'AFFORDABLE LIVING',
+      name: 'Big Run Bluffs',
+      location: 'Central Ohio',
+      url: '/communities/big-run-bluffs',
+    },
+    {
+      label: '55+ COMMUNITY',
+      name: 'Enchanted Acres',
+      location: 'Central Ohio',
+      url: '/communities/enchanted-acres',
+    },
+    {
+      label: 'QUIET STREETS',
+      name: 'Casal Court',
+      location: 'Central Ohio',
+      url: '/communities/casal-court',
+    },
+  ],
+};
+---
+
+<BaseLayout title="Parsons Mobile Home Park | Greenlawn Homes" description="An established manufactured home community in Central Ohio.">
+  <CommunityHero community={community} />
+  <CommunityFeatures community={community} />
+  <CommunityHomes community={community} />
+  <CommunityResident community={community} />
+  <CommunityRelated communities={community.relatedCommunities} />
+</BaseLayout>

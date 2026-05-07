@@ -1,0 +1,148 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const communities = [
+  {
+    label: 'AFFORDABLE LIVING',
+    name: 'Big Run Bluffs',
+    location: 'Central Ohio',
+    description: 'A well-maintained manufactured home community in Central Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/big-run-bluffs',
+    homesCount: 4,
+  },
+  {
+    label: '55+ COMMUNITY',
+    name: 'Enchanted Acres',
+    location: 'Central Ohio',
+    description: 'A 55+ manufactured home community in Central Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/IPxGtbkztdCCaSUI-1536.webp',
+    url: '/communities/enchanted-acres',
+    homesCount: 3,
+  },
+  {
+    label: 'ESTABLISHED NEIGHBORHOOD',
+    name: 'Parsons Mobile Home Park',
+    location: 'Central Ohio',
+    description: 'An established manufactured home community in Central Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/parsons-mobile-home-park',
+    homesCount: 2,
+  },
+  {
+    label: 'QUIET STREETS',
+    name: 'Casal Court',
+    location: 'Central Ohio',
+    description: 'A quiet cul-de-sac community in Central Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/casal-court',
+    homesCount: 2,
+  },
+  {
+    label: 'COUNTRY LIVING',
+    name: 'Foxlair Farms',
+    location: 'Orient, Ohio',
+    description: 'A spacious country manufactured home community in Orient, Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/foxlair-farms',
+    homesCount: 3,
+  },
+  {
+    label: 'YOUNG FAMILIES',
+    name: 'Buckeye Lake Estates',
+    location: 'Buckeye Lake, Ohio',
+    description: 'A lakeside manufactured home community in Buckeye Lake, Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-1536.webp',
+    url: '/communities/buckeye-lake-estates',
+    homesCount: 3,
+  },
+  {
+    label: 'EASTSIDE COMMUNITY',
+    name: 'Willowbrook Terrace',
+    location: 'Etna, Ohio',
+    description: 'A friendly manufactured home community in Etna, Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/willowbrook-terrace',
+    homesCount: 2,
+  },
+  {
+    label: 'SMALL TOWN LIVING',
+    name: 'Washington Manor',
+    location: 'Washington Court House, Ohio',
+    description: 'A charming manufactured home community in Washington Court House, Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/washington-manor',
+    homesCount: 2,
+  },
+  {
+    label: 'RURAL RETREAT',
+    name: 'Wagon Wheel',
+    location: 'Mt Sterling, Ohio',
+    description: 'A rural manufactured home community in Mt Sterling, Ohio.',
+    image: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    url: '/communities/wagon-wheel',
+    homesCount: 2,
+  },
+];
+---
+
+<BaseLayout title="Our Communities | Greenlawn Homes" description="Nine communities across Central Ohio — from established neighborhoods to lakeside retreats.">
+  <section class="bg-dark py-16 md:py-24">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="text-[40px] md:text-[56px] font-serif font-semibold text-white mb-6 leading-tight">
+        Our Communities
+      </h1>
+      <p class="text-[18px] md:text-[20px] text-white/80 max-w-[600px]">
+        Nine communities across Central Ohio — from established neighborhoods to lakeside retreats.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-background py-16 md:py-24">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {communities.map((community) => (
+          <a href={community.url} class="card group hover:-translate-y-0.5 hover:shadow-md transition-all no-underline">
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={community.image}
+                alt={community.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <span class="absolute top-3 left-3 bg-black/60 text-white px-2 py-1 text-[10px] uppercase font-bold">
+                {community.label}
+              </span>
+            </div>
+            <div class="p-6">
+              <h2 class="text-[20px] font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                {community.name}
+              </h2>
+              <p class="text-[14px] text-muted-foreground mb-3">{community.location}</p>
+              <p class="text-[14px] text-foreground mb-4 leading-relaxed">{community.description}</p>
+              <span class="text-[14px] text-primary font-semibold group-hover:underline">
+                See availability → {community.homesCount} homes available
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-secondary py-16 md:py-20">
+    <div class="max-w-[800px] mx-auto px-6 text-center">
+      <h2 class="text-[28px] font-serif font-semibold text-foreground mb-4">
+        Not sure which community is right for you?
+      </h2>
+      <p class="text-[16px] text-muted-foreground mb-8">
+        Answer a few questions and we will match you with the right community.
+      </p>
+      <a
+        href="/#intake-form-section"
+        class="inline-block bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold no-underline hover:bg-primary-hover transition-colors"
+      >
+        Help Me Find the Right Community
+      </a>
+    </div>
+  </section>
+</BaseLayout>

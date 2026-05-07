@@ -1,0 +1,46 @@
+---
+export interface Props {
+  address: string;
+  phone: string;
+  officeHours: string;
+  manager: string;
+  availableHomes: number;
+}
+
+const { address, phone, officeHours, manager, availableHomes } = Astro.props;
+---
+
+<section id="details" class="py-16 bg-background">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-[32px] font-semibold font-serif text-foreground mb-8">Community Details</h2>
+        <div class="space-y-6">
+          <div>
+            <p class="text-[12px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Address</p>
+            <p class="text-foreground text-[16px]">{address}</p>
+          </div>
+          <div>
+            <p class="text-[12px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Phone</p>
+            <a href={`tel:${phone.replace(/\D/g, '')}`} class="text-primary hover:underline text-[16px]">{phone}</a>
+          </div>
+          <div>
+            <p class="text-[12px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Office Hours</p>
+            <p class="text-foreground text-[16px]">{officeHours}</p>
+          </div>
+          <div>
+            <p class="text-[12px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Community Manager</p>
+            <p class="text-foreground text-[16px]">{manager}</p>
+          </div>
+          <div>
+            <p class="text-[12px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Homes Available</p>
+            <p class="text-foreground text-[16px]">{availableHomes} available now</p>
+          </div>
+        </div>
+        <a href="#availability" class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-5 py-2.5 text-[14px] font-semibold mt-8 hover:bg-primary-hover transition-colors">
+          Check Availability
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import StatsBar from '@/components/home/StatsBar.astro';
+import FeaturesIcons from '@/components/home/FeaturesIcons.astro';
+import AvailableHomes from '@/components/home/AvailableHomes.astro';
+import RightHome from '@/components/home/RightHome.astro';
+import OurCommunities from '@/components/home/OurCommunities.astro';
+import CustomBuild from '@/components/home/CustomBuild.astro';
+import Financing from '@/components/home/Financing.astro';
+import Quiz from '@/components/home/Quiz.astro';
+import Resident from '@/components/home/Resident.astro';
+import Story from '@/components/home/Story.astro';
+import Team from '@/components/home/Team.astro';
+import Contact from '@/components/home/Contact.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Greenlawn Homes",
+  "description": "A family-run Central Ohio manufactured home dealer and community operator. Proud dealer of Redman Homes and Adventure Homes.",
+  "url": "https://greenlawnhomes-udyhps8u.manus.space/",
+  "telephone": "(614) 443-7421",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "OH",
+    "addressLocality": "Central Ohio",
+    "addressCountry": "US"
+  }
+};
+---
+
+<BaseLayout 
+  title="Greenlawn Homes | Manufactured Homes & Communities in Central Ohio"
+  description="Homeownership, the way it should be. Browse available manufactured homes and 9 family-run communities across Central Ohio."
+  jsonLd={jsonLd}
+>
+  <Hero />
+  <StatsBar />
+  <FeaturesIcons />
+  <AvailableHomes />
+  <RightHome />
+  <OurCommunities />
+  <CustomBuild />
+  <Financing />
+  <Quiz />
+  <Resident />
+  <Story />
+  <Team />
+  <Contact />
+</BaseLayout>

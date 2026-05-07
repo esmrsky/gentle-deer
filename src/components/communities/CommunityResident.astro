@@ -1,0 +1,52 @@
+---
+export interface Props {
+  manager: string;
+  phone: string;
+}
+
+const { manager, phone } = Astro.props;
+---
+
+<section class="py-16 bg-secondary">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-[600px] mx-auto text-center">
+      <h2 class="text-[32px] font-semibold font-serif text-foreground mb-4">Already a Resident?</h2>
+      <p class="text-[18px] text-muted-foreground mb-8">
+        Your community manager <strong class="text-foreground">{manager}</strong> is here to help with payments, maintenance, and anything else you need.
+      </p>
+      <a href={`tel:${phone.replace(/\D/g, '')}`} class="inline-block bg-primary text-primary-foreground rounded-[6px] px-6 py-3 text-[15px] font-semibold hover:bg-primary-hover transition-colors mb-8">
+        {phone}
+      </a>
+
+      <div class="grid sm:grid-cols-3 gap-4 mt-8">
+        <div class="bg-surface rounded-[8px] p-5 text-center">
+          <p class="text-[14px] font-semibold text-foreground mb-2">Pay Rent</p>
+          <p class="text-[12px] text-muted-foreground">Pay your monthly lot rent online or by phone.</p>
+          <p class="text-[12px] text-primary mt-2">Coming soon</p>
+        </div>
+        <div class="bg-surface rounded-[8px] p-5 text-center">
+          <p class="text-[14px] font-semibold text-foreground mb-2">Maintenance Request</p>
+          <p class="text-[12px] text-muted-foreground">Submit a request for community grounds or your home.</p>
+          <p class="text-[12px] text-primary mt-2">Coming soon</p>
+        </div>
+        <div class="bg-surface rounded-[8px] p-5 text-center">
+          <p class="text-[14px] font-semibold text-foreground mb-2">Contact Your Manager</p>
+          <p class="text-[12px] text-muted-foreground">Call {manager} directly.</p>
+          <a href={`tel:${phone.replace(/\D/g, '')}`} class="text-[12px] text-primary mt-2 hover:underline">{phone}</a>
+        </div>
+      </div>
+
+      <div class="mt-8 p-4 bg-surface rounded-[8px]">
+        <p class="text-[14px] text-muted-foreground">
+          After-Hours Emergency? <a href="tel:EMERGENCY_LINE_TBD" class="text-primary hover:underline">Contact emergency line</a> — for urgent issues outside office hours only.
+        </p>
+      </div>
+
+      <div class="mt-6">
+        <p class="text-[14px] text-muted-foreground">
+          Questions about your community? Call your property manager directly at <a href={`tel:${phone.replace(/\D/g, '')}`} class="text-primary hover:underline">{phone}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

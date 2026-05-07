@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Big Run Bluffs',
+  subtitle: 'AFFORDABLE LIVING',
+  location: 'Central Ohio',
+  phone: '(614) 279-2206',
+  communityType: 'All ages',
+  established: '1989',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  badge: undefined,
+};
+
+const description = `Big Run Bluffs offers some of the most affordable manufactured home living in Columbus without sacrificing community quality. Paved streets, a playground, and on-site management make this a neighborhood where families can settle in and stay.
+
+Located on the west side of Columbus, residents enjoy easy access to shopping, schools, and major highways. It is the kind of place where neighbors look out for each other and kids play outside until dinner.
+
+Whether you are buying your first home or looking for a fresh start, Big Run Bluffs is a community worth calling home.`;
+
+const features = [
+  { label: 'Paved Streets', description: 'Well-maintained roads throughout the community.' },
+  { label: 'Playground', description: 'Safe play areas for children.' },
+  { label: 'Community Laundry', description: 'On-site laundry facilities available.' },
+  { label: 'On-site Management', description: 'Responsive team always nearby.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'Well Maintained', description: 'Pride in every corner of the community.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp',
+    status: 'Pre-Owned',
+    price: '$62,500',
+    address: '2035 Frank Rd #22, Columbus, OH',
+    specs: '3 bed · 2 bath · 1,216 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/5',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: '55+ COMMUNITY',
+    name: 'Enchanted Acres',
+    location: 'Central Ohio',
+    url: '/communities/enchanted-acres',
+  },
+  {
+    category: 'ESTABLISHED NEIGHBORHOOD',
+    name: 'Parsons Mobile Home Park',
+    location: 'Central Ohio',
+    url: '/communities/parsons-mobile-home-park',
+  },
+  {
+    category: 'QUIET STREETS',
+    name: 'Casal Court',
+    location: 'Central Ohio',
+    url: '/communities/casal-court',
+  },
+];
+---
+
+<BaseLayout title="Big Run Bluffs | Greenlawn Homes" description="Big Run Bluffs offers some of the most affordable manufactured home living in Columbus without sacrificing community quality. Paved streets, a playground, and on-site management make this a neighborhood where families can settle in and stay.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          Affordable living, close to everything.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">2035 Frank Rd, Columbus, OH 43223</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:6142792206" class="text-primary hover:underline font-semibold">(614) 279-2206</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">4 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Big Run Bluffs" />
+  <ResidentSection phone="(614) 279-2206" managerName="[TBD Manager Name]" communityName="Big Run Bluffs" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

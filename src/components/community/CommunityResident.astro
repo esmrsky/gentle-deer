@@ -1,0 +1,122 @@
+---
+interface Props {
+  community: {
+    name: string;
+    phone: string;
+    phoneRaw: string;
+  };
+}
+
+const { community } = Astro.props;
+---
+
+<section class="bg-secondary py-16 md:py-20">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-[700px] mx-auto text-center">
+      <h2 class="text-[28px] font-serif font-semibold text-foreground mb-6">
+        Already a Resident?
+      </h2>
+      <p class="text-[16px] text-muted-foreground mb-8 leading-relaxed">
+        Your community manager <strong>[TBD Manager Name]</strong> is here to help with payments, maintenance, and anything else you need.
+      </p>
+
+      <div class="bg-surface rounded-[8px] p-6 md:p-8 text-left">
+        <div class="grid gap-5">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">Contact Your Manager</p>
+              <p class="text-[15px] text-foreground mb-1">Call [TBD Manager Name] directly at <a href={`tel:${community.phoneRaw}`} class="text-primary hover:underline">{community.phone}</a>.</p>
+              <a href={`tel:${community.phoneRaw}`} class="text-primary text-[15px] font-semibold hover:underline">{community.phone}</a>
+            </div>
+          </div>
+
+          <hr class="border-border" />
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">Pay Rent</p>
+              <p class="text-[15px] text-foreground">Pay your monthly lot rent online or by phone.</p>
+              <span class="text-[14px] text-muted-foreground italic">Pay Rent (coming soon)</span>
+            </div>
+          </div>
+
+          <hr class="border-border" />
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">Maintenance Request</p>
+              <p class="text-[15px] text-foreground">Submit a maintenance request for community grounds or your home.</p>
+              <span class="text-[14px] text-muted-foreground italic">Maintenance Request (coming soon)</span>
+            </div>
+          </div>
+
+          <hr class="border-border" />
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">After-Hours Emergency</p>
+              <p class="text-[15px] text-foreground mb-1">For urgent issues outside of regular office hours.</p>
+              <a href="tel:EMERGENCY_LINE_TBD" class="text-primary text-[15px] font-semibold hover:underline">After-Hours Emergency</a>
+              <p class="text-[13px] text-muted-foreground mt-1">For emergencies outside office hours only.</p>
+            </div>
+          </div>
+
+          <hr class="border-border" />
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">Community Suggestion Box</p>
+              <p class="text-[15px] text-foreground">Have an idea to improve your community? Share it with your manager.</p>
+              <span class="text-[14px] text-primary font-semibold hover:underline cursor-pointer">Submit a Suggestion</span>
+            </div>
+          </div>
+
+          <hr class="border-border" />
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-[12px] font-semibold tracking-wider text-muted-foreground uppercase mb-1">Request a Call Back</p>
+              <p class="text-[15px] text-foreground">Leave your name and number and we will call you back within the hour.</p>
+              <a href={`tel:${community.phoneRaw}`} class="text-primary text-[15px] font-semibold hover:underline">{community.phone}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-[14px] text-muted-foreground mt-8">
+        Questions about your community? Call your property manager directly at <a href={`tel:${community.phoneRaw}`} class="text-primary hover:underline">{community.phone}</a>
+      </p>
+    </div>
+  </div>
+</section>

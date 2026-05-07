@@ -1,0 +1,97 @@
+---
+import Container from '@/components/Container.astro';
+import { SITE } from '@/config/site';
+
+export interface Props {
+  logo?: string;
+}
+
+const { logo = SITE.name } = Astro.props;
+---
+
+<header id="navbar" class="sticky top-0 z-40 bg-surface shadow-sm" data-ps="src/components/Navigation.astro:nav-gl">
+  <nav class="py-4" data-ps="src/components/Navigation.astro:nav-inner">
+    <Container class="flex justify-between items-center max-w-[1200px]">
+      <a href="/" class="block no-underline" data-ps="src/components/Navigation.astro:nav-logo">
+        <img src="https://cdn.pagesmith.app/69b93246/images/greenlawn-logo_738c0869.svg" alt={logo} width="136" height="44" class="w-[136px] h-auto" data-ps="src/components/Navigation.astro:d4d69v" />
+      </a>
+
+      <div class="hidden lg:flex items-center gap-[32px]" data-ps="src/components/Navigation.astro:nav-links">
+        <a href="/shop-homes" class="text-[15px] font-semibold text-foreground no-underline hover:text-primary transition-colors" data-ps="src/components/Navigation.astro:7vkjsc">Shop Homes</a>
+        <a href="/communities" class="text-[15px] font-semibold text-foreground no-underline hover:text-primary transition-colors" data-ps="src/components/Navigation.astro:7vkjsd">Communities</a>
+        <a href="/our-story" class="text-[15px] font-semibold text-foreground no-underline hover:text-primary transition-colors" data-ps="src/components/Navigation.astro:7vkjse">Our Story</a>
+        <a href="/contact" class="text-[15px] font-semibold text-foreground no-underline hover:text-primary transition-colors" data-ps="src/components/Navigation.astro:7vkjsf">Contact</a>
+        
+        <div class="flex items-center gap-[24px] ml-4" data-ps="src/components/Navigation.astro:gqvsde">
+          <a href="/shop-homes" class="bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold no-underline hover:bg-primary-hover transition-colors" data-ps="src/components/Navigation.astro:kd8n5z">See Availability</a>
+          <a href="/#" class="text-primary text-[15px] font-semibold no-underline hover:underline" data-ps="src/components/Navigation.astro:kd8n5y">Already a Resident?</a>
+        </div>
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+       data-ps="src/components/Navigation.astro:nav-toggle">
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </Container>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden overflow-hidden bg-surface border-t border-border shadow-lg"
+    role="navigation"
+    aria-label="Mobile navigation"
+   data-ps="src/components/Navigation.astro:nav-mobile">
+    <nav class="flex flex-col py-6 px-6 gap-4" data-ps="src/components/Navigation.astro:nav-mobile-inner">
+      <a href="/shop-homes" class="text-[16px] font-semibold text-foreground py-2 no-underline" data-ps="src/components/Navigation.astro:kd8n5x">Shop Homes</a>
+      <a href="/communities" class="text-[16px] font-semibold text-foreground py-2 no-underline" data-ps="src/components/Navigation.astro:kd8n5w">Communities</a>
+      <a href="/our-story" class="text-[16px] font-semibold text-foreground py-2 no-underline" data-ps="src/components/Navigation.astro:kd8n5v">Our Story</a>
+      <a href="/contact" class="text-[16px] font-semibold text-foreground py-2 no-underline" data-ps="src/components/Navigation.astro:kd8n5u">Contact</a>
+      <hr class="border-border my-2" />
+      <a href="/shop-homes" class="bg-primary text-primary-foreground rounded-[6px] px-5 py-3 text-[14px] font-semibold text-center no-underline" data-ps="src/components/Navigation.astro:kd8n5t">See Availability</a>
+      <a href="/#" class="text-primary text-[15px] font-semibold text-center py-2 no-underline" data-ps="src/components/Navigation.astro:kd8n5s">Already a Resident?</a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+
+  function toggleMenu() {
+    const isOpen = !mobileMenu?.classList.contains('hidden');
+    if (isOpen) {
+      mobileMenu?.classList.add('hidden');
+      menuIconOpen?.classList.remove('hidden');
+      menuIconClose?.classList.add('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+    } else {
+      mobileMenu?.classList.remove('hidden');
+      menuIconOpen?.classList.add('hidden');
+      menuIconClose?.classList.remove('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIconOpen?.classList.remove('hidden');
+      menuIconClose?.classList.add('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

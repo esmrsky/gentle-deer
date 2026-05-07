@@ -1,0 +1,96 @@
+---
+interface Props {
+  community: {
+    name: string;
+    tagline: string;
+    location: string;
+    phone: string;
+    phoneRaw: string;
+    established: string;
+    communityType: string;
+    petPolicy: string;
+    officeHours: string;
+    address: string;
+    description: string;
+    description2: string;
+    heroImage: string;
+    homesCount: number;
+  };
+}
+
+const { community } = Astro.props;
+---
+
+<section class="relative bg-dark min-h-[500px] flex items-end">
+  <img
+    src={community.heroImage}
+    alt={community.name}
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+  <div class="relative z-10 max-w-[1200px] mx-auto px-6 pb-12 pt-32 w-full">
+    <div class="flex flex-wrap gap-6 mb-6">
+      <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-1.5 text-[11px] font-bold tracking-wider uppercase rounded-[4px]">
+        {community.tagline}
+      </span>
+    </div>
+
+    <h1 class="text-[48px] font-serif font-semibold text-white mb-3 leading-tight">
+      {community.name}
+    </h1>
+
+    <p class="text-white/80 text-[18px] mb-8">{community.location}</p>
+
+    <div class="flex flex-wrap gap-4">
+      <a
+        href={`tel:${community.phoneRaw}`}
+        class="bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold no-underline hover:bg-primary-hover transition-colors"
+      >
+        See Availability {community.phone}
+      </a>
+      <a
+        href="/#"
+        class="text-white text-[15px] font-semibold no-underline hover:underline flex items-center"
+      >
+        Already a Resident?
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface py-8 border-b border-border">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
+      <div>
+        <span class="text-[10px] font-bold tracking-widest text-accent uppercase block mb-1">Community Type</span>
+        <span class="text-foreground text-[15px] font-medium">{community.communityType}</span>
+      </div>
+      <div>
+        <span class="text-[10px] font-bold tracking-widest text-accent uppercase block mb-1">Established</span>
+        <span class="text-foreground text-[15px] font-medium">{community.established}</span>
+      </div>
+      <div>
+        <span class="text-[10px] font-bold tracking-widest text-accent uppercase block mb-1">Pet Policy</span>
+        <span class="text-foreground text-[15px] font-medium">{community.petPolicy}</span>
+      </div>
+      <div>
+        <span class="text-[10px] font-bold tracking-widest text-accent uppercase block mb-1">Office Hours</span>
+        <span class="text-foreground text-[15px] font-medium">{community.officeHours}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-background py-16 md:py-24">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="max-w-[800px]">
+      <h2 class="text-[32px] font-serif font-semibold text-foreground mb-6 leading-tight">
+        {community.description}
+      </h2>
+      <p class="text-[18px] text-muted-foreground leading-relaxed">
+        {community.description2}
+      </p>
+    </div>
+  </div>
+</section>

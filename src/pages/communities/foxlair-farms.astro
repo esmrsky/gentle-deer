@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Foxlair Farms',
+  subtitle: 'COUNTRY LIVING',
+  location: 'Orient, Ohio',
+  phone: '(740) 954-9258',
+  communityType: 'All ages',
+  established: '2001',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  badge: undefined,
+};
+
+const description = `Foxlair Farms is for people who want space. Spacious lots, scenic views, and the kind of quiet that only comes from country living — all just a short drive from Columbus.
+
+Paved streets and on-site management mean you get the best of both worlds: the peace of rural Ohio with the reliability of a well-run community.
+
+If you have been dreaming of a little more elbow room, Foxlair Farms delivers it at a price that makes sense.`;
+
+const features = [
+  { label: 'Spacious Lots', description: 'More room between you and your neighbors.' },
+  { label: 'Country Setting', description: 'Rural Ohio at its finest.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'Paved Streets', description: 'Well-maintained roads throughout.' },
+  { label: 'On-site Management', description: 'Responsive team always available.' },
+  { label: 'Scenic Views', description: 'Beautiful Ohio countryside surroundings.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1536.webp',
+    status: 'Pre-Owned',
+    price: '$108,900',
+    address: '10185 Darby Creek Rd #9, Orient, OH',
+    specs: '4 bed · 2 bath · 1,664 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/9',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: 'YOUNG FAMILIES',
+    name: 'Buckeye Lake Estates',
+    location: 'Buckeye Lake, Ohio',
+    url: '/communities/buckeye-lake-estates',
+  },
+  {
+    category: 'EASTSIDE COMMUNITY',
+    name: 'Willowbrook Terrace',
+    location: 'Etna, Ohio',
+    url: '/communities/willowbrook-terrace',
+  },
+  {
+    category: 'RURAL RETREAT',
+    name: 'Wagon Wheel',
+    location: 'Mt Sterling, Ohio',
+    url: '/communities/wagon-wheel',
+  },
+];
+---
+
+<BaseLayout title="Foxlair Farms | Greenlawn Homes" description="Foxlair Farms is for people who want space. Spacious lots, scenic views, and the kind of quiet that only comes from country living — all just a short drive from Columbus.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          Room to breathe.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">10185 Darby Creek Rd, Orient, OH 43146</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:7409549258" class="text-primary hover:underline font-semibold">(740) 954-9258</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">3 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Foxlair Farms" />
+  <ResidentSection phone="(740) 954-9258" managerName="[TBD Manager Name]" communityName="Foxlair Farms" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

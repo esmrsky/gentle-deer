@@ -1,0 +1,69 @@
+---
+import Container from '@/components/Container.astro';
+---
+
+<section id="filters" class="bg-surface border-b border-border py-6 sticky top-[76px] z-30">
+  <Container class="max-w-[1200px]">
+    <div class="flex flex-wrap gap-3 items-center">
+      <!-- Price -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+        <option>Any Price</option>
+        <option>Under $30k</option>
+        <option>$30k–$50k</option>
+        <option>$50k–$75k</option>
+        <option>$75k–$100k</option>
+        <option>$100k+</option>
+      </select>
+
+      <!-- Beds -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+        <option>Any Beds</option>
+        <option>1+</option>
+        <option>2+</option>
+        <option>3+</option>
+        <option>4+</option>
+      </select>
+
+      <!-- Baths -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+        <option>Any Baths</option>
+        <option>1+</option>
+        <option>2+</option>
+        <option>3+</option>
+      </select>
+
+      <!-- Community -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+        <option>Any Community</option>
+        <option>Big Run Bluffs</option>
+        <option>Enchanted Acres</option>
+        <option>Parsons Mobile Home Park</option>
+        <option>Casal Court</option>
+        <option>Foxlair Farms</option>
+        <option>Buckeye Lake Estates</option>
+        <option>Willowbrook Terrace</option>
+        <option>Washington Manor</option>
+        <option>Wagon Wheel</option>
+      </select>
+
+      <!-- Condition -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+        <option>Any Condition</option>
+        <option>Pre-Owned</option>
+        <option>New</option>
+        <option>Newest</option>
+      </select>
+
+      <!-- Sort -->
+      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary ml-auto">
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+      </select>
+
+      <!-- Reset -->
+      <button class="text-[14px] text-muted-foreground hover:text-foreground transition-colors">
+        Reset
+      </button>
+    </div>
+  </Container>
+</section>

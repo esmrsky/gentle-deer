@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Buckeye Lake Estates',
+  subtitle: 'YOUNG FAMILIES',
+  location: 'Buckeye Lake, Ohio',
+  phone: '(740) 822-0006',
+  communityType: 'All ages',
+  established: '2005',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/KlsQvzdVYvCLZFHi-1536.webp',
+  badge: undefined,
+};
+
+const description = `Buckeye Lake Estates is where young families plant roots. Affordable homes, a lake out back, and a neighborhood where kids ride bikes until the streetlights come on.
+
+This is the kind of place that shapes childhoods. Fishing off the dock, summer cookouts, and neighbors who become lifelong friends.
+
+For families looking for their first home with room to grow, Buckeye Lake Estates offers the perfect combination of affordability, community, and natural beauty.`;
+
+const features = [
+  { label: 'Near Buckeye Lake', description: 'Steps from the water for boating and fishing.' },
+  { label: 'Playground', description: 'Safe play areas for children.' },
+  { label: 'Family Friendly', description: 'A community built for growing families.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'Community Events', description: 'Cookouts, fireworks, fall festivals.' },
+  { label: 'On-site Management', description: 'Responsive team always available.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp',
+    status: 'Pre-Owned',
+    price: '$119,900',
+    address: '4135 Walnut Rd #3, Buckeye Lake, OH',
+    specs: '3 bed · 2 bath · 1,512 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/10',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: 'COUNTRY LIVING',
+    name: 'Foxlair Farms',
+    location: 'Orient, Ohio',
+    url: '/communities/foxlair-farms',
+  },
+  {
+    category: 'EASTSIDE COMMUNITY',
+    name: 'Willowbrook Terrace',
+    location: 'Etna, Ohio',
+    url: '/communities/willowbrook-terrace',
+  },
+  {
+    category: 'RURAL RETREAT',
+    name: 'Wagon Wheel',
+    location: 'Mt Sterling, Ohio',
+    url: '/communities/wagon-wheel',
+  },
+];
+---
+
+<BaseLayout title="Buckeye Lake Estates | Greenlawn Homes" description="Buckeye Lake Estates is where young families plant roots. Affordable homes, a lake out back, and a neighborhood where kids ride bikes until the streetlights come on.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          Your first home. Your best summers.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">4135 Walnut Rd, Buckeye Lake, OH 43008</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:7408220006" class="text-primary hover:underline font-semibold">(740) 822-0006</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">3 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Buckeye Lake Estates" />
+  <ResidentSection phone="(740) 822-0006" managerName="[TBD Manager Name]" communityName="Buckeye Lake Estates" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

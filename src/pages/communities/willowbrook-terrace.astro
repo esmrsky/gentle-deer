@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const community = {
+  title: 'Willowbrook Terrace',
+  subtitle: 'EASTSIDE COMMUNITY',
+  location: 'Etna, Ohio',
+  phone: '(740) 954-9252',
+  communityType: 'All ages',
+  established: '1997',
+  petPolicy: 'Pets welcome',
+  officeHours: 'M–F 9am–5pm',
+  heroImage: 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+  badge: undefined,
+};
+
+const description = `Willowbrook Terrace sits on the east side of Columbus, offering easy highway access and a welcoming community atmosphere. Paved streets, a playground, and on-site management make this a great choice for families.
+
+Community laundry, pet-friendly policies, and a location that puts you minutes from I-70 round out the practical appeal. This is a community that works hard for its residents.
+
+If you are looking for a well-run community on the east side with room to grow, Willowbrook Terrace is worth a visit.`;
+
+const features = [
+  { label: 'Paved Streets', description: 'Well-maintained roads throughout.' },
+  { label: 'Playground', description: 'Safe play areas for children.' },
+  { label: 'Pet Friendly', description: 'Dogs and cats welcome.' },
+  { label: 'On-site Management', description: 'Responsive team always available.' },
+  { label: 'Community Laundry', description: 'On-site laundry facilities.' },
+  { label: 'Easy Highway Access', description: 'Minutes to I-70 for easy commuting.' },
+];
+
+const homes = [
+  {
+    image: 'https://cdn.pagesmith.app/69b93246/images/hEOYOnDpxhzIiHmj-1536.webp',
+    status: 'New',
+    price: '$134,900',
+    address: '8764 National Rd SW #17, Etna, OH',
+    specs: '3 bed · 2 bath · 1,440 sqft',
+    url: 'https://greenlawnhomes-udyhps8u.manus.space/homes/11',
+  },
+];
+
+const exploreCommunities = [
+  {
+    category: 'AFFORDABLE LIVING',
+    name: 'Big Run Bluffs',
+    location: 'Central Ohio',
+    url: '/communities/big-run-bluffs',
+  },
+  {
+    category: 'COUNTRY LIVING',
+    name: 'Foxlair Farms',
+    location: 'Orient, Ohio',
+    url: '/communities/foxlair-farms',
+  },
+  {
+    category: 'YOUNG FAMILIES',
+    name: 'Buckeye Lake Estates',
+    location: 'Buckeye Lake, Ohio',
+    url: '/communities/buckeye-lake-estates',
+  },
+];
+---
+
+<BaseLayout title="Willowbrook Terrace | Greenlawn Homes" description="Willowbrook Terrace sits on the east side of Columbus, offering easy highway access and a welcoming community atmosphere. Paved streets, a playground, and on-site management make this a great choice for families.">
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="max-w-[800px]">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6">
+          A welcoming place to call home.
+        </h2>
+        <div class="space-y-4 text-[16px] text-muted-foreground leading-relaxed">
+          {description.split('\n\n').map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Address</dt>
+            <dd class="text-foreground">8764 National Rd SW, Etna, OH 43018</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href="tel:7409549252" class="text-primary hover:underline font-semibold">(740) 954-9252</a>
+            </dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">M–F 9am–5pm</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Community Manager</dt>
+            <dd class="text-foreground">[TBD Manager Name]</dd>
+          </div>
+          <div class="flex gap-4">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">2 available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+          >
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CommunityFeatures features={features} />
+  <CommunityHomes homes={homes} communityName="Willowbrook Terrace" />
+  <ResidentSection phone="(740) 954-9252" managerName="[TBD Manager Name]" communityName="Willowbrook Terrace" />
+  <ExploreCommunities communities={exploreCommunities} />
+</BaseLayout>

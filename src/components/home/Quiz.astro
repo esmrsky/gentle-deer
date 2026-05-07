@@ -1,0 +1,55 @@
+---
+import Container from '@/components/Container.astro';
+---
+
+<section id="quiz" class="bg-background py-[80px]" data-ps="src/components/home/Quiz.astro:quiz-gl">
+  <Container class="max-w-[800px] text-center">
+    <h2 class="text-[32px] font-semibold text-foreground mb-4" data-ps="src/components/home/Quiz.astro:h9phqp">Help me find the right home.</h2>
+    <p class="text-[16px] text-muted-foreground mb-12" data-ps="src/components/home/Quiz.astro:87143d">Answer a few questions and we will match you with the right home and community.</p>
+
+    <div class="bg-surface p-8 rounded-[8px] shadow-sm border border-border text-left" data-ps="src/components/home/Quiz.astro:owk8ag">
+      <div class="flex justify-between items-center mb-6" data-ps="src/components/home/Quiz.astro:owk8af">
+        <span class="text-[12px] font-semibold text-muted-foreground" data-ps="src/components/home/Quiz.astro:1dnhey">Step 1 of 7</span>
+        <span class="text-[12px] font-semibold text-muted-foreground" data-ps="src/components/home/Quiz.astro:1dnhex">14%</span>
+      </div>
+      <div class="w-full bg-background h-1 rounded-full mb-8" data-ps="src/components/home/Quiz.astro:owk8ae">
+        <div class="bg-primary w-[14%] h-full rounded-full" data-ps="src/components/home/Quiz.astro:owk8ad"></div>
+      </div>
+
+      <h3 class="text-[20px] font-semibold text-foreground mb-8" data-ps="src/components/home/Quiz.astro:hqr4vm">What are you looking for today?</h3>
+
+      <div class="space-y-3" data-ps="src/components/home/Quiz.astro:owk8ac">
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv47s">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:1dnhew">I want to buy a pre-owned home</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv47r">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:1dnhev">I want to order a brand new home</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv47q">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:1dnheu">I want to rent a lot in one of your communities</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv47p">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:1dnhet">I want to apply for financing</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv473">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:1dnhes">I am already a resident and need help</span>
+        </label>
+        <label class="flex items-center gap-4 p-4 border border-border rounded-[6px] cursor-pointer hover:bg-secondary/20 transition-colors" data-ps="src/components/home/Quiz.astro:dfv472">
+          <input type="radio" name="quiz-step-1" class="w-4 h-4 text-primary focus:ring-primary" />
+          <span class="text-[15px] font-medium text-foreground" data-ps="src/components/home/Quiz.astro:idi28k">I am not sure yet — help me figure it out</span>
+        </label>
+      </div>
+
+      <div class="mt-8 flex justify-end" data-ps="src/components/home/Quiz.astro:owk8ab">
+        <button type="button" class="bg-muted text-muted-foreground font-semibold py-2.5 px-8 rounded-[6px] cursor-not-allowed" data-ps="src/components/home/Quiz.astro:a4t7or">
+          Continue
+        </button>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,376 @@
+{
+  "viewportWidth": 1920,
+  "pageBackground": {
+    "type": "color",
+    "value": "rgb(247, 243, 236)"
+  },
+  "sectionThemes": [
+    {
+      "background": "rgb(247, 243, 236)",
+      "textColor": "rgb(255, 255, 255)",
+      "headings": [
+        {
+          "tag": "h1",
+          "fontSize": "56px",
+          "fontWeight": "600",
+          "color": "rgb(255, 255, 255)",
+          "text": "Homeownership, the way it should be."
+        },
+        {
+          "tag": "h2",
+          "fontSize": "40px",
+          "fontWeight": "600",
+          "color": "rgb(26, 26, 26)",
+          "text": "Homes available now."
+        },
+        {
+          "tag": "h2",
+          "fontSize": "40px",
+          "fontWeight": "600",
+          "color": "rgb(26, 26, 26)",
+          "text": "The right home for every chapter."
+        },
+        {
+          "tag": "h2",
+          "fontSize": "40px",
+          "fontWeight": "600",
+          "color": "rgb(26, 26, 26)",
+          "text": "Our communities."
+        },
+        {
+          "tag": "h2",
+          "fontSize": "40px",
+          "fontWeight": "600",
+          "color": "rgb(255, 255, 255)",
+          "text": "Order your home exactly the way you want it."
+        }
+      ],
+      "bodyStyle": {
+        "fontSize": "20px",
+        "color": "rgb(255, 255, 255)",
+        "lineHeight": "32px"
+      },
+      "buttons": [
+        {
+          "backgroundColor": "rgb(46, 107, 58)",
+          "color": "rgb(255, 255, 255)",
+          "borderRadius": "6px",
+          "padding": "10px 20px 10px 20px",
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "text": "See Availability"
+        },
+        {
+          "color": "rgb(255, 255, 255)",
+          "borderRadius": "6px",
+          "border": "2px solid rgb(255, 255, 255)",
+          "padding": "14px 30px 14px 30px",
+          "fontSize": "17px",
+          "fontWeight": "600",
+          "text": "Explore Our Communities"
+        },
+        {
+          "backgroundColor": "rgb(255, 255, 255)",
+          "color": "rgb(46, 107, 58)",
+          "borderRadius": "6px",
+          "padding": "16px 32px 16px 32px",
+          "fontSize": "17px",
+          "fontWeight": "600",
+          "text": "Start a Custom Build"
+        }
+      ],
+      "images": [
+        {
+          "displayWidth": 136,
+          "displayHeight": 44
+        },
+        {
+          "displayWidth": 1920,
+          "displayHeight": 720,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        },
+        {
+          "displayWidth": 361,
+          "displayHeight": 225,
+          "objectFit": "cover"
+        }
+      ],
+      "layout": {
+        "containerMaxWidth": "1200px",
+        "display": "flex",
+        "flexDirection": "row",
+        "alignItems": "center",
+        "gap": "28px",
+        "childCount": 5
+      }
+    },
+    {
+      "background": "rgb(255, 255, 255)",
+      "textColor": null,
+      "headings": [],
+      "bodyStyle": null,
+      "buttons": [
+        {
+          "backgroundColor": "rgb(46, 107, 58)",
+          "color": "rgb(255, 255, 255)",
+          "borderRadius": "6px",
+          "padding": "10px 20px 10px 20px",
+          "fontSize": "14px",
+          "fontWeight": "600",
+          "text": "See Availability"
+        }
+      ],
+      "images": [
+        {
+          "displayWidth": 136,
+          "displayHeight": 44
+        }
+      ],
+      "layout": {
+        "containerMaxWidth": "1200px",
+        "display": "flex",
+        "flexDirection": "row",
+        "alignItems": "center",
+        "gap": "28px",
+        "childCount": 5
+      }
+    },
+    {
+      "background": "rgba(0, 0, 0, 0)",
+      "gradient": "linear-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.38))",
+      "textColor": null,
+      "headings": [],
+      "bodyStyle": null,
+      "buttons": [],
+      "layout": {}
+    },
+    {
+      "background": "rgb(26, 51, 32)",
+      "textColor": "rgb(201, 162, 74)",
+      "headings": [
+        {
+          "tag": "h4",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "color": "rgb(201, 162, 74)",
+          "text": "Quick Links"
+        },
+        {
+          "tag": "h4",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "color": "rgb(201, 162, 74)",
+          "text": "Our Communities"
+        },
+        {
+          "tag": "h4",
+          "fontSize": "12px",
+          "fontWeight": "600",
+          "color": "rgb(201, 162, 74)",
+          "text": "Contact"
+        }
+      ],
+      "bodyStyle": {
+        "fontSize": "15px",
+        "color": "rgba(255, 255, 255, 0.7)",
+        "lineHeight": "25.5px"
+      },
+      "buttons": [],
+      "images": [
+        {
+          "displayWidth": 152,
+          "displayHeight": 56,
+          "borderRadius": "8px"
+        }
+      ],
+      "layout": {
+        "containerMaxWidth": "1200px",
+        "paddingBlock": "80px 0px",
+        "display": "grid",
+        "gridTemplateColumns": "336px 168px 336px 168px",
+        "gap": "48px",
+        "childCount": 4
+      }
+    }
+  ],
+  "globalTypography": {
+    "headingFont": "Fraunces",
+    "bodyFont": "Inter",
+    "scale": {
+      "h1": {
+        "fontSize": "56px",
+        "fontWeight": "600",
+        "lineHeight": "89.6px"
+      },
+      "h2": {
+        "fontSize": "40px",
+        "fontWeight": "600",
+        "lineHeight": "64px"
+      },
+      "h4": {
+        "fontSize": "12px",
+        "fontWeight": "600",
+        "lineHeight": "19.2px"
+      },
+      "body": {
+        "fontSize": "18px",
+        "fontWeight": "400",
+        "lineHeight": "30.6px"
+      }
+    }
+  },
+  "navigation": {
+    "isFullWidth": true,
+    "width": "1920px",
+    "backgroundColor": "rgb(255, 255, 255)",
+    "position": "sticky",
+    "logo": {
+      "width": "136px",
+      "height": "44px",
+      "position": "inside-nav",
+      "hasBadge": false
+    },
+    "links": [
+      {
+        "text": "Shop Homes",
+        "fontSize": "15px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(26, 26, 26)"
+      },
+      {
+        "text": "Communities",
+        "fontSize": "15px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(26, 26, 26)"
+      },
+      {
+        "text": "Our Story",
+        "fontSize": "15px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(26, 26, 26)"
+      },
+      {
+        "text": "Contact",
+        "fontSize": "15px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(26, 26, 26)"
+      },
+      {
+        "text": "See Availability",
+        "fontSize": "17px",
+        "fontFamily": "Inter",
+        "fontWeight": "400",
+        "color": "rgb(26, 26, 26)"
+      },
+      {
+        "text": "See Availability",
+        "fontSize": "14px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(255, 255, 255)",
+        "hasDropdown": true,
+        "isButton": true,
+        "buttonStyle": {
+          "backgroundColor": "rgb(46, 107, 58)",
+          "borderRadius": "6px"
+        }
+      },
+      {
+        "text": "Already a Resident?",
+        "fontSize": "15px",
+        "fontFamily": "Inter",
+        "fontWeight": "600",
+        "color": "rgb(46, 107, 58)"
+      }
+    ]
+  },
+  "sliders": [],
+  "buttons": [
+    {
+      "backgroundColor": "rgb(46, 107, 58)",
+      "color": "rgb(255, 255, 255)",
+      "borderRadius": "6px",
+      "padding": "10px 20px 10px 20px",
+      "fontSize": "14px",
+      "fontWeight": "600",
+      "text": "See Availability"
+    },
+    {
+      "color": "rgb(255, 255, 255)",
+      "borderRadius": "6px",
+      "border": "2px solid rgb(255, 255, 255)",
+      "padding": "14px 30px 14px 30px",
+      "fontSize": "17px",
+      "fontWeight": "600",
+      "text": "Explore Our Communities"
+    },
+    {
+      "backgroundColor": "rgb(255, 255, 255)",
+      "color": "rgb(46, 107, 58)",
+      "borderRadius": "6px",
+      "padding": "16px 32px 16px 32px",
+      "fontSize": "17px",
+      "fontWeight": "600",
+      "text": "Start a Custom Build"
+    }
+  ],
+  "videos": [],
+  "footer": {
+    "background": "rgb(26, 51, 32)",
+    "textColor": "rgb(26, 26, 26)",
+    "columns": 4
+  },
+  "socialLinks": null,
+  "hoverStyles": {
+    "[data-sonner-toast][data-styled=\"true\"] [data-close-button]": {
+      "borderColor": "var(--gray5)"
+    },
+    "[data-sonner-toaster][data-sonner-theme=\"dark\"] [data-sonner-toast] [data-close-button]": {
+      "borderColor": "var(--normal-border-hover)"
+    },
+    ".community-card": {
+      "transform": "translateY(-2px)",
+      "boxShadow": "rgba(0, 0, 0, 0.1) 0px 8px 24px"
+    },
+    "footer a": {
+      "color": "rgb(255, 255, 255)"
+    }
+  },
+  "cssVariables": {
+    "--radius": ".5rem"
+  },
+  "externalFonts": [
+    "https://fonts.googleapis.com/",
+    "https://fonts.gstatic.com/",
+    "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;600&display=swap"
+  ]
+}

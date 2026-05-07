@@ -1,0 +1,154 @@
+{
+  "success": true,
+  "url": "https://greenlawnhomes-udyhps8u.manus.space/",
+  "structured": {
+    "title": "Greenlawn Homes",
+    "description": "",
+    "url": "https://greenlawnhomes-udyhps8u.manus.space/",
+    "imageCount": 22,
+    "branding": {
+      "colors": {
+        "primary": "#1A3320",
+        "secondary": "#E5E0D6",
+        "accent": "#2E6B3A",
+        "background": "#F7F3EC",
+        "textPrimary": "#2E6B3A",
+        "link": "#2E6B3A"
+      },
+      "typography": {
+        "fontFamilies": {
+          "primary": "Inter",
+          "heading": "Fraunces"
+        },
+        "fontStacks": {
+          "heading": [
+            "Fraunces",
+            "serif"
+          ],
+          "body": [
+            "Inter",
+            "sans-serif"
+          ],
+          "paragraph": [
+            "Inter",
+            "sans-serif"
+          ]
+        },
+        "fontSizes": {
+          "h1": "56px",
+          "h2": "40px",
+          "body": "20px"
+        }
+      },
+      "spacing": {
+        "baseUnit": 8,
+        "borderRadius": "0px"
+      },
+      "logo": "https://d2xsxph8kpxj0f.cloudfront.net/310519663043789397/UDyHpS8UagexWWCLpyjtGt/greenlawn-logo_738c0869.svg",
+      "favicon": null
+    },
+    "pages": [
+      {
+        "slug": "index",
+        "path": "/",
+        "title": "Greenlawn Homes",
+        "file": "data/pages/index.md"
+      }
+    ],
+    "availablePages": [
+      {
+        "path": "/communities/wagon-wheel/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-wagon-wheel",
+        "scraped": false
+      },
+      {
+        "path": "/communities/buckeye-lake-estates/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-buckeye-lake-estates",
+        "scraped": false
+      },
+      {
+        "path": "/shop-homes/",
+        "label": "Greenlawn Homes",
+        "slug": "shop-homes",
+        "scraped": false
+      },
+      {
+        "path": "/contact/",
+        "label": "Greenlawn Homes",
+        "slug": "contact",
+        "scraped": false
+      },
+      {
+        "path": "/communities/casal-court/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-casal-court",
+        "scraped": false
+      },
+      {
+        "path": "/communities/washington-manor/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-washington-manor",
+        "scraped": false
+      },
+      {
+        "path": "/communities/foxlair-farms/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-foxlair-farms",
+        "scraped": false
+      },
+      {
+        "path": "/communities/enchanted-acres/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-enchanted-acres",
+        "scraped": false
+      },
+      {
+        "path": "/communities/",
+        "label": "Greenlawn Homes",
+        "slug": "communities",
+        "scraped": false
+      },
+      {
+        "path": "/communities/parsons-mobile-home-park/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-parsons-mobile-home-park",
+        "scraped": false
+      },
+      {
+        "path": "/our-story/",
+        "label": "Greenlawn Homes",
+        "slug": "our-story",
+        "scraped": false
+      },
+      {
+        "path": "/companies/",
+        "label": "Greenlawn Homes",
+        "slug": "companies",
+        "scraped": false
+      },
+      {
+        "path": "/communities/big-run-bluffs/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-big-run-bluffs",
+        "scraped": false
+      },
+      {
+        "path": "/communities/willowbrook-terrace/",
+        "label": "Greenlawn Homes",
+        "slug": "communities-willowbrook-terrace",
+        "scraped": false
+      }
+    ]
+  },
+  "metadata": {
+    "scraper": "firecrawl-crawl-endpoint",
+    "timestamp": "2026-05-07T15:25:09.797Z",
+    "homepageContentLength": 9668,
+    "imageCount": 22,
+    "hasBranding": true,
+    "pagesDiscovered": 14,
+    "pagesScraped": 1
+  }
+}
