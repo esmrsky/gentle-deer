@@ -2,11 +2,11 @@
 import Container from '@/components/Container.astro';
 ---
 
-<section id="filters" class="bg-surface border-b border-border py-6 sticky top-[76px] z-30">
+<section id="filters" class="bg-surface border-b border-border py-6 sticky top-[76px] z-30" data-ps="src/components/shophomes/ShopHomesFilters.astro:6450pt">
   <Container class="max-w-[1200px]">
-    <div class="flex flex-wrap gap-3 items-center">
+    <div class="flex flex-wrap gap-3 items-center" data-ps="src/components/shophomes/ShopHomesFilters.astro:6jsj08">
       <!-- Price -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+      <select id="filter-price" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary filter-control">
         <option>Any Price</option>
         <option>Under $30k</option>
         <option>$30k–$50k</option>
@@ -16,7 +16,7 @@ import Container from '@/components/Container.astro';
       </select>
 
       <!-- Beds -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+      <select id="filter-beds" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary filter-control">
         <option>Any Beds</option>
         <option>1+</option>
         <option>2+</option>
@@ -25,7 +25,7 @@ import Container from '@/components/Container.astro';
       </select>
 
       <!-- Baths -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+      <select id="filter-baths" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary filter-control">
         <option>Any Baths</option>
         <option>1+</option>
         <option>2+</option>
@@ -33,7 +33,7 @@ import Container from '@/components/Container.astro';
       </select>
 
       <!-- Community -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+      <select id="filter-community" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary filter-control">
         <option>Any Community</option>
         <option>Big Run Bluffs</option>
         <option>Enchanted Acres</option>
@@ -47,23 +47,51 @@ import Container from '@/components/Container.astro';
       </select>
 
       <!-- Condition -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary">
+      <select id="filter-condition" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary filter-control">
         <option>Any Condition</option>
         <option>Pre-Owned</option>
         <option>New</option>
-        <option>Newest</option>
       </select>
 
       <!-- Sort -->
-      <select class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary ml-auto">
+      <select id="sort-homes" class="bg-background border border-border rounded-[6px] px-4 py-2 text-[14px] text-foreground focus:outline-none focus:border-primary ml-auto filter-control">
         <option>Price: Low to High</option>
         <option>Price: High to Low</option>
       </select>
 
       <!-- Reset -->
-      <button class="text-[14px] text-muted-foreground hover:text-foreground transition-colors">
+      <button id="reset-filters" class="text-[14px] text-muted-foreground hover:text-foreground transition-colors" data-ps="src/components/shophomes/ShopHomesFilters.astro:jvdnv6">
         Reset
       </button>
+    </div>
+  </Container>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const controls = document.querySelectorAll('.filter-control');
+    const resetButton = document.getElementById('reset-filters');
+
+    controls.forEach(ctrl => {
+      ctrl.addEventListener('change', () => {
+        if (window.updateShopHomesFilters) {
+          window.updateShopHomesFilters();
+        }
+      });
+    });
+
+    if (resetButton) {
+      resetButton.addEventListener('click', () => {
+        controls.forEach(ctrl => {
+          ctrl.value = ctrl.options[0].value; // Reset to first option
+        });
+        if (window.updateShopHomesFilters) {
+          window.updateShopHomesFilters();
+        }
+      });
+    }
+  });
+</script>
     </div>
   </Container>
 </section>

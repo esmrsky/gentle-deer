@@ -70,4 +70,43 @@ const docs = defineCollection({
   }),
 });
 
-export const collections = { blog, docs };
+const communities = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    location: z.string().optional(),
+    phone: z.string().optional(),
+    communityType: z.string().optional(),
+    established: z.string().optional(),
+    petPolicy: z.string().optional(),
+    officeHours: z.string().optional(),
+    heroImage: z.string().optional(),
+    badge: z.string().optional(),
+    address: z.string().optional(),
+    managerName: z.string().optional(),
+    homesAvailable: z.string().optional(),
+    features: z.array(z.object({
+      label: z.string(),
+      description: z.string(),
+    })).optional(),
+  }),
+});
+
+const homes = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    status: z.string(),
+    price: z.string(),
+    address: z.string(),
+    community: z.string().optional(),
+    beds: z.number().optional(),
+    baths: z.number().optional(),
+    sqft: z.number().optional(),
+    image: z.string().optional(),
+    images: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { blog, docs, communities, homes };

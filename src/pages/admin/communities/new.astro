@@ -1,0 +1,91 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+if (!runtime?.env?.DB) {
+  return new Response('Database unavailable', { status: 503 });
+}
+
+if (!Astro.locals.user) {
+  return Astro.redirect('/login/');
+}
+
+let error = '';
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    const title = data.get('title');
+    const location = data.get('location');
+    const community_type = data.get('community_type');
+    const description = data.get('description');
+    const image = data.get('image');
+
+    if (!title) {
+      error = 'Title is required';
+    } else {
+      await runtime.env.DB.prepare(`
+        INSERT INTO communities (title, location, community_type, description, hero_image)
+        VALUES (?, ?, ?, ?, ?)
+      `).bind(title, location, community_type, description, image).run();
+
+      return Astro.redirect('/admin/communities/');
+    }
+  } catch (e) {
+    console.error(e);
+    error = 'An error occurred while saving.';
+  }
+}
+---
+
+<BaseLayout title="Add Community" noIndex={true}>
+  <Container class="max-w-[800px] py-12 min-h-[60vh]">
+    <div class="flex items-center gap-4 mb-8" data-ps="src/pages/admin/communities/new.astro:h7fi93">
+      <a href="/admin/communities/" class="text-muted-foreground hover:text-foreground" data-ps="src/pages/admin/communities/new.astro:q09t1v">← Back to Communities</a>
+      <h1 class="text-3xl font-bold font-serif" data-ps="src/pages/admin/communities/new.astro:e1uxrt">Add New Community</h1>
+    </div>
+
+    {error && (
+      <div class="bg-red-50 text-red-700 p-4 rounded-md mb-6 border border-red-200" data-ps="src/pages/admin/communities/new.astro:h7fi92">
+        {error}
+      </div>
+    )}
+
+    <form method="POST" class="bg-surface border border-border rounded-[8px] p-6 space-y-6">
+      <div class="grid md:grid-cols-2 gap-6" data-ps="src/pages/admin/communities/new.astro:h7fi91">
+        <div class="space-y-2" data-ps="src/pages/admin/communities/new.astro:h7fi90">
+          <label for="title" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/new.astro:emq3bh">Community Name *</label>
+          <input type="text" id="title" name="title" required class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+        <div class="space-y-2" data-ps="src/pages/admin/communities/new.astro:h7fi8z">
+          <label for="location" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/new.astro:emq3bi">Location</label>
+          <input type="text" id="location" name="location" class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6" data-ps="src/pages/admin/communities/new.astro:h7fi8y">
+        <div class="space-y-2" data-ps="src/pages/admin/communities/new.astro:h7fi8x">
+          <label for="community_type" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/new.astro:emq3bj">Community Type</label>
+          <input type="text" id="community_type" name="community_type" placeholder="e.g. 55+ Community, Affordable Living" class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+        <div class="space-y-2" data-ps="src/pages/admin/communities/new.astro:h7fi8w">
+          <label for="image" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/new.astro:emq3bk">Hero Image URL</label>
+          <input type="url" id="image" name="image" class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+      </div>
+
+      <div class="space-y-2" data-ps="src/pages/admin/communities/new.astro:h7fi8v">
+        <label for="description" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/new.astro:emq3bl">Description</label>
+        <textarea id="description" name="description" rows="4" class="w-full px-3 py-2 border border-border rounded-md"></textarea>
+      </div>
+
+      <div class="pt-4 flex justify-end gap-4" data-ps="src/pages/admin/communities/new.astro:h7fi8u">
+        <a href="/admin/communities/" class="px-4 py-2 border border-border rounded-[6px] font-semibold hover:bg-secondary transition-colors" data-ps="src/pages/admin/communities/new.astro:q09t1u">Cancel</a>
+        <button type="submit" class="bg-primary text-white px-6 py-2 rounded-[6px] font-semibold hover:bg-primary-hover transition-colors" data-ps="src/pages/admin/communities/new.astro:orggpo">Save Community</button>
+      </div>
+    </form>
+  </Container>
+</BaseLayout>

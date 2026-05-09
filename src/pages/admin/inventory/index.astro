@@ -1,0 +1,78 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+if (!runtime?.env?.DB) {
+  return new Response('Database unavailable', { status: 503 });
+}
+
+if (!Astro.locals.user) {
+  return Astro.redirect('/login/');
+}
+
+let homes = [];
+try {
+  const { results } = await runtime.env.DB.prepare('SELECT * FROM inventory_homes ORDER BY created_at DESC').all();
+  homes = results;
+} catch (e) {
+  console.error(e);
+}
+---
+
+<BaseLayout title="Inventory Management" noIndex={true}>
+  <Container class="max-w-[1200px] py-12 min-h-[60vh]">
+    <div class="flex justify-between items-center mb-8" data-ps="src/pages/admin/inventory/index.astro:mfa5yf">
+      <h1 class="text-3xl font-bold font-serif" data-ps="src/pages/admin/inventory/index.astro:hgimsg">Inventory Management</h1>
+      <div class="flex gap-4" data-ps="src/pages/admin/inventory/index.astro:mfa5yd">
+        <a href="/" class="btn-outline border-primary text-primary hover:bg-primary hover:text-white" data-ps="src/pages/admin/inventory/index.astro:bk8d3">View Site</a>
+        <a href="/admin/inventory/new/" class="bg-primary text-white px-4 py-2 rounded-[6px] font-semibold hover:bg-primary-hover transition-colors" data-ps="src/pages/admin/inventory/index.astro:p44ij2">Add New Home</a>
+      </div>
+    </div>
+
+    <div class="bg-surface rounded-[8px] border border-border overflow-hidden" data-ps="src/pages/admin/inventory/index.astro:mfa5ye">
+      <table class="w-full text-left">
+        <thead class="bg-secondary/50">
+          <tr>
+            <th class="px-6 py-4 font-semibold text-foreground">Address / Title</th>
+            <th class="px-6 py-4 font-semibold text-foreground">Price</th>
+            <th class="px-6 py-4 font-semibold text-foreground">Status</th>
+            <th class="px-6 py-4 font-semibold text-foreground">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          {homes.length === 0 ? (
+            <tr>
+              <td colspan="4" class="px-6 py-8 text-center text-muted-foreground">
+                No inventory items found. Click "Add New Home" to get started.
+              </td>
+            </tr>
+          ) : (
+            homes.map(home => (
+              <tr class="hover:bg-secondary/30 transition-colors">
+                <td class="px-6 py-4">
+                  <p class="font-medium text-foreground" data-ps="src/pages/admin/inventory/index.astro:pcdqjs">{home.address || home.title}</p>
+                  <p class="text-sm text-muted-foreground" data-ps="src/pages/admin/inventory/index.astro:pcdqjr">{home.community || 'No community specified'}</p>
+                </td>
+                <td class="px-6 py-4">{home.price}</td>
+                <td class="px-6 py-4">
+                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded-[4px] font-semibold uppercase" data-ps="src/pages/admin/inventory/index.astro:kvgdfh">
+                    {home.status}
+                  </span>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex gap-3" data-ps="src/pages/admin/inventory/index.astro:mfa5yd">
+                    <a href={`/admin/inventory/${home.id}/`} class="text-primary hover:underline font-medium text-sm" data-ps="src/pages/admin/inventory/index.astro:p44ij1">Edit / Delete</a>
+                    <a href={`/homes/${home.id}/`} target="_blank" class="text-muted-foreground hover:text-foreground font-medium text-sm" data-ps="src/pages/admin/inventory/index.astro:p44ij0">View ↗</a>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</BaseLayout>

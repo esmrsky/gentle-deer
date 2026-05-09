@@ -1,239 +1,188 @@
 ---
+import { getCollection } from 'astro:content';
 import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+let dbHomes: any[] = [];
+
+if (runtime?.env?.DB) {
+  try {
+    const { results } = await runtime.env.DB.prepare('SELECT * FROM inventory_homes ORDER BY created_at DESC').all();
+    dbHomes = results;
+  } catch (e) {
+    console.error('Failed to fetch DB inventory:', e);
+  }
+}
+
+const mdHomes = await getCollection('homes');
+
+const allHomes = [
+  ...dbHomes.map(h => ({
+    id: h.id,
+    slug: h.id,
+    data: {
+      title: h.title,
+      status: h.status,
+      price: h.price,
+      address: h.address,
+      community: h.community,
+      beds: h.beds,
+      baths: h.baths,
+      sqft: h.sqft,
+      image: h.image
+    }
+  })),
+  ...mdHomes
+];
 ---
 
-<section id="homes-grid" class="bg-background py-[60px]">
+<section id="homes-grid" class="bg-background py-[60px]" data-ps="src/components/shophomes/ShopHomesGrid.astro:6tpwi5">
   <Container class="max-w-[1200px]">
-    <p class="text-[14px] text-muted-foreground mb-6">12 homes found</p>
+    <p id="homes-count" class="text-[14px] text-muted-foreground mb-6" data-ps="src/components/shophomes/ShopHomesGrid.astro:jbq2vk">{allHomes.length} homes found</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Home 1 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp"
-            alt="Enchanted Acres home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-accent text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">New</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$168,500</p>
-          <p class="text-[14px] text-muted-foreground mb-2">4 bed · 2 bath · 1,920 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">4510 Parsons Ave #42, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Enchanted Acres</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 2 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/hEOYOnDpxhzIiHmj-1536.webp"
-            alt="Willowbrook Terrace home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-accent text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">New</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$134,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 2 bath · 1,440 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">8764 National Rd SW #17, Etna, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Willowbrook Terrace</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 3 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp"
-            alt="Buckeye Lake Estates home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$119,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 2 bath · 1,512 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">4135 Walnut Rd #3, Buckeye Lake, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Buckeye Lake Estates</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 4 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1536.webp"
-            alt="Foxlair Farms home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$108,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">4 bed · 2 bath · 1,664 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">10185 Darby Creek Rd #9, Orient, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Foxlair Farms</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 5 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp"
-            alt="Casal Court home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$94,500</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 2 bath · 1,456 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">654 Stimmel Rd #11, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Casal Court</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 6 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp"
-            alt="Enchanted Acres home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$78,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 2 bath · 1,344 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">4510 Parsons Ave #18, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Enchanted Acres</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 7 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp"
-            alt="Big Run Bluffs home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$62,500</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 2 bath · 1,216 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">2035 Frank Rd #22, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Big Run Bluffs</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 8 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp"
-            alt="Casal Court home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$71,800</p>
-          <p class="text-[14px] text-muted-foreground mb-2">3 bed · 1 bath · 1,152 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">654 Stimmel Rd #5, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Casal Court</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 9 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/BanfIPykQXQEIMCU-1536.webp"
-            alt="Washington Manor home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$56,200</p>
-          <p class="text-[14px] text-muted-foreground mb-2">2 bed · 2 bath · 1,040 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">94 Jamison Rd #14, Washington Court House, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Washington Manor</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 10 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/XREDZLGBDyPuZTzy-1536.webp"
-            alt="Parsons Mobile Home Park home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$47,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">2 bed · 1 bath · 864 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">2745 Parsons Ave #31, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Parsons Mobile Home Park</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 11 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/MzDBoNlpAXtdDHNE-1536.webp"
-            alt="Wagon Wheel home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$38,500</p>
-          <p class="text-[14px] text-muted-foreground mb-2">2 bed · 1 bath · 840 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">13380 Tenny Rd #7, Mt Sterling, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Wagon Wheel</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
-
-      <!-- Home 12 -->
-      <div class="bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <div class="relative">
-          <img
-            src="https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp"
-            alt="Parsons Mobile Home Park home"
-            class="w-full aspect-video object-cover"
-          />
-          <span class="absolute top-0 right-0 bg-primary text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px]">Pre-Owned</span>
-        </div>
-        <div class="p-5">
-          <p class="text-[24px] font-semibold text-foreground mb-1">$29,900</p>
-          <p class="text-[14px] text-muted-foreground mb-2">1 bed · 1 bath · 620 sqft</p>
-          <p class="text-[14px] text-foreground mb-3">2745 Parsons Ave #12, Columbus, OH</p>
-          <p class="text-[14px] text-muted-foreground mb-4">Parsons Mobile Home Park</p>
-          <a href="#" class="text-primary text-[14px] font-semibold hover:underline">View Home →</a>
-        </div>
-      </div>
+    <div id="homes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-ps="src/components/shophomes/ShopHomesGrid.astro:sqrl0">
+      {allHomes.map((home, __psIdx) => {
+        const rawPrice = parseInt(home.data.price.replace(/[^0-9]/g, ''), 10) || 0;
+        return (
+          <div 
+            class="home-card bg-surface rounded-[8px] border border-border overflow-hidden group hover:-translate-y-0.5 hover:shadow-md transition-all"
+            data-price={rawPrice}
+            data-beds={home.data.beds || 0}
+            data-baths={home.data.baths || 0}
+            data-community={home.data.community || ''}
+            data-status={home.data.status || ''}
+           data-ps={`src/components/shophomes/ShopHomesGrid.astro:sqrkz-${__psIdx}`}>
+            <div class="relative" data-ps={`src/components/shophomes/ShopHomesGrid.astro:sqrky-${__psIdx}`}>
+              {home.data.image && (
+                <img
+                  src={home.data.image}
+                  alt={`${home.data.community} home`}
+                  class="w-full aspect-video object-cover" data-ps={`src/components/shophomes/ShopHomesGrid.astro:unzq8a-${__psIdx}`} />
+              )}
+              {home.data.status && (
+                <span class={`absolute top-0 right-0 text-white px-2 py-1 text-[10px] uppercase font-bold rounded-bl-[4px] ${home.data.status.toLowerCase() === 'new' ? 'bg-accent' : 'bg-primary'}`} data-ps={`src/components/shophomes/ShopHomesGrid.astro:k0wu89-${__psIdx}`}>
+                  {home.data.status}
+                </span>
+              )}
+            </div>
+            <div class="p-5" data-ps={`src/components/shophomes/ShopHomesGrid.astro:sqrkx-${__psIdx}`}>
+              <p class="text-[24px] font-semibold text-foreground mb-1" data-ps={`src/components/shophomes/ShopHomesGrid.astro:atzt94-${__psIdx}`}>{home.data.price}</p>
+              <p class="text-[14px] text-muted-foreground mb-2" data-ps={`src/components/shophomes/ShopHomesGrid.astro:atzt95-${__psIdx}`}>
+                {home.data.beds && `${home.data.beds} bed`} 
+                {home.data.beds && home.data.baths && ' · '}
+                {home.data.baths && `${home.data.baths} bath`}
+                {(home.data.beds || home.data.baths) && home.data.sqft && ' · '}
+                {home.data.sqft && `${home.data.sqft} sqft`}
+              </p>
+              <p class="text-[14px] text-foreground mb-3" data-ps={`src/components/shophomes/ShopHomesGrid.astro:atzt96-${__psIdx}`}>{home.data.address}</p>
+              <p class="text-[14px] text-muted-foreground mb-4" data-ps={`src/components/shophomes/ShopHomesGrid.astro:atzt97-${__psIdx}`}>{home.data.community}</p>
+              <a href={`/homes/${home.slug}`} class="text-primary text-[14px] font-semibold hover:underline" data-ps={`src/components/shophomes/ShopHomesGrid.astro:b291a7-${__psIdx}`}>View Home →</a>
+            </div>
+          </div>
+        );
+      })}
     </div>
+
   </Container>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // We will attach an event listener to document, to catch events from filters
+    const container = document.getElementById('homes-container');
+    const countDisplay = document.getElementById('homes-count');
+    if (!container) return;
+
+    let allCards = Array.from(container.querySelectorAll('.home-card'));
+
+    function applyFiltersAndSort() {
+      const priceSelect = document.getElementById('filter-price');
+      const bedsSelect = document.getElementById('filter-beds');
+      const bathsSelect = document.getElementById('filter-baths');
+      const communitySelect = document.getElementById('filter-community');
+      const conditionSelect = document.getElementById('filter-condition');
+      const sortSelect = document.getElementById('sort-homes');
+
+      const priceVal = priceSelect?.value || 'Any Price';
+      const bedsVal = bedsSelect?.value || 'Any Beds';
+      const bathsVal = bathsSelect?.value || 'Any Baths';
+      const communityVal = communitySelect?.value || 'Any Community';
+      const conditionVal = conditionSelect?.value || 'Any Condition';
+      const sortVal = sortSelect?.value || 'Price: Low to High';
+
+      let visibleCount = 0;
+      
+      allCards.forEach(card => {
+        const p = parseInt(card.dataset.price || '0', 10);
+        const b = parseInt(card.dataset.beds || '0', 10);
+        const ba = parseInt(card.dataset.baths || '0', 10);
+        const c = card.dataset.community || '';
+        const s = card.dataset.status || '';
+
+        let match = true;
+
+        if (priceVal !== 'Any Price') {
+          if (priceVal === 'Under $30k' && p >= 30000) match = false;
+          if (priceVal === '$30k–$50k' && (p < 30000 || p > 50000)) match = false;
+          if (priceVal === '$50k–$75k' && (p < 50000 || p > 75000)) match = false;
+          if (priceVal === '$75k–$100k' && (p < 75000 || p > 100000)) match = false;
+          if (priceVal === '$100k+' && p <= 100000) match = false;
+        }
+
+        if (bedsVal !== 'Any Beds') {
+          const reqBeds = parseInt(bedsVal.charAt(0), 10);
+          if (b < reqBeds) match = false;
+        }
+
+        if (bathsVal !== 'Any Baths') {
+          const reqBaths = parseInt(bathsVal.charAt(0), 10);
+          if (ba < reqBaths) match = false;
+        }
+
+        if (communityVal !== 'Any Community' && c !== communityVal) {
+          match = false;
+        }
+
+        if (conditionVal !== 'Any Condition') {
+          if (conditionVal === 'Newest') {
+             // We'll treat Newest as New for status filter, or ignore since we don't have dates easily accessible
+             if (s !== 'New') match = false;
+          } else if (s !== conditionVal) match = false;
+        }
+
+        if (match) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (countDisplay) {
+        countDisplay.textContent = `${visibleCount} home${visibleCount === 1 ? '' : 's'} found`;
+      }
+
+      // Sort
+      const sortedCards = allCards.filter(c => c.style.display !== 'none').sort((a, b) => {
+        const pa = parseInt(a.dataset.price || '0', 10);
+        const pb = parseInt(b.dataset.price || '0', 10);
+        
+        if (sortVal === 'Price: Low to High') {
+          return pa - pb;
+        } else if (sortVal === 'Price: High to Low') {
+          return pb - pa;
+        }
+        return 0; // Default
+      });
+
+      // Append in new order
+      sortedCards.forEach(c => container.appendChild(c));
+    }
+
+    // Export function to global scope so filter component can call it
+    window.updateShopHomesFilters = applyFiltersAndSort;
+    
+    // Initial sort
+    applyFiltersAndSort();
+  });
+</script>

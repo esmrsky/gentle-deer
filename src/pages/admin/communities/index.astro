@@ -1,0 +1,73 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+if (!runtime?.env?.DB) {
+  return new Response('Database unavailable', { status: 503 });
+}
+
+if (!Astro.locals.user) {
+  return Astro.redirect('/login/');
+}
+
+let communities = [];
+try {
+  const { results } = await runtime.env.DB.prepare('SELECT * FROM communities ORDER BY created_at DESC').all();
+  communities = results;
+} catch (e) {
+  console.error(e);
+}
+---
+
+<BaseLayout title="Manage Communities" noIndex={true}>
+  <Container class="max-w-[1200px] py-12 min-h-[60vh]">
+    <div class="flex items-center gap-4 mb-8" data-ps="src/pages/admin/communities/index.astro:umiksy">
+      <a href="/admin/" class="text-muted-foreground hover:text-foreground" data-ps="src/pages/admin/communities/index.astro:rtn1c7">← Dashboard</a>
+      <h1 class="text-3xl font-bold font-serif flex-1" data-ps="src/pages/admin/communities/index.astro:28ojwr">Communities Management</h1>
+      <a href="/admin/communities/new/" class="bg-primary text-white px-4 py-2 rounded-[6px] font-semibold hover:bg-primary-hover transition-colors" data-ps="src/pages/admin/communities/index.astro:rtn1c8">Add New Community</a>
+    </div>
+
+    <div class="bg-surface rounded-[8px] border border-border overflow-hidden" data-ps="src/pages/admin/communities/index.astro:umiksx">
+      <table class="w-full text-left">
+        <thead class="bg-secondary/50">
+          <tr>
+            <th class="px-6 py-4 font-semibold text-foreground">Name / Location</th>
+            <th class="px-6 py-4 font-semibold text-foreground">Type</th>
+            <th class="px-6 py-4 font-semibold text-foreground">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          {communities.length === 0 ? (
+            <tr>
+              <td colspan="3" class="px-6 py-8 text-center text-muted-foreground">
+                No communities found. Click "Add New Community" to get started.
+              </td>
+            </tr>
+          ) : (
+            communities.map(comm => (
+              <tr class="hover:bg-secondary/30 transition-colors">
+                <td class="px-6 py-4">
+                  <p class="font-medium text-foreground" data-ps="src/pages/admin/communities/index.astro:rldtbh">{comm.title}</p>
+                  <p class="text-sm text-muted-foreground" data-ps="src/pages/admin/communities/index.astro:rldtbi">{comm.location || 'No location specified'}</p>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded-[4px] font-semibold uppercase" data-ps="src/pages/admin/communities/index.astro:o7e3rm">
+                    {comm.community_type || 'Standard'}
+                  </span>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex gap-3" data-ps="src/pages/admin/communities/index.astro:umiksw">
+                    <a href={`/admin/communities/${comm.id}/`} class="text-primary hover:underline font-medium text-sm" data-ps="src/pages/admin/communities/index.astro:rtn1c9">Edit / Delete</a>
+                  </div>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</BaseLayout>

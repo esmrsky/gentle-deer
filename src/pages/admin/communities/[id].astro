@@ -1,0 +1,118 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+if (!runtime?.env?.DB) {
+  return new Response('Database unavailable', { status: 503 });
+}
+
+if (!Astro.locals.user) {
+  return Astro.redirect('/login/');
+}
+
+const { id } = Astro.params;
+const cleanId = id?.replace(/\/$/, '');
+let error = '';
+let community = null;
+
+try {
+  community = await runtime.env.DB.prepare('SELECT * FROM communities WHERE id = ?').bind(cleanId).first();
+} catch (e) {
+  console.error(e);
+}
+
+if (!community) {
+  return Astro.redirect('/admin/communities/');
+}
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    const action = data.get('action');
+
+    if (action === 'delete') {
+      await runtime.env.DB.prepare('DELETE FROM communities WHERE id = ?').bind(cleanId).run();
+      return Astro.redirect('/admin/communities/');
+    }
+
+    const title = data.get('title');
+    const location = data.get('location');
+    const community_type = data.get('community_type');
+    const description = data.get('description');
+    const image = data.get('image');
+
+    if (!title) {
+      error = 'Title is required';
+    } else {
+      await runtime.env.DB.prepare(`
+        UPDATE communities 
+        SET title = ?, location = ?, community_type = ?, description = ?, hero_image = ?
+        WHERE id = ?
+      `).bind(title, location, community_type, description, image, cleanId).run();
+
+      return Astro.redirect('/admin/communities/');
+    }
+  } catch (e) {
+    console.error(e);
+    error = 'An error occurred while saving.';
+  }
+}
+---
+
+<BaseLayout title="Edit Community" noIndex={true}>
+  <Container class="max-w-[800px] py-12 min-h-[60vh]">
+    <div class="flex items-center gap-4 mb-8" data-ps="src/pages/admin/communities/[id].astro:14rmi2">
+      <a href="/admin/communities/" class="text-muted-foreground hover:text-foreground" data-ps="src/pages/admin/communities/[id].astro:4phkts">← Back to Communities</a>
+      <h1 class="text-3xl font-bold font-serif flex-1" data-ps="src/pages/admin/communities/[id].astro:22r6vq">Edit Community</h1>
+      <form method="POST" onsubmit="return confirm('Are you sure you want to delete this community?');">
+        <input type="hidden" name="action" value="delete" />
+        <button type="submit" class="text-red-600 hover:text-red-800 font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:6btxs6">Delete Community</button>
+      </form>
+    </div>
+
+    {error && (
+      <div class="bg-red-50 text-red-700 p-4 rounded-md mb-6 border border-red-200" data-ps="src/pages/admin/communities/[id].astro:14rmi1">
+        {error}
+      </div>
+    )}
+
+    <form method="POST" class="bg-surface border border-border rounded-[8px] p-6 space-y-6">
+      <input type="hidden" name="action" value="update" />
+      
+      <div class="grid md:grid-cols-2 gap-6" data-ps="src/pages/admin/communities/[id].astro:14rmi0">
+        <div class="space-y-2" data-ps="src/pages/admin/communities/[id].astro:14rmhz">
+          <label for="title" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:nmg7bl">Community Name *</label>
+          <input type="text" id="title" name="title" value={community.title} required class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+        <div class="space-y-2" data-ps="src/pages/admin/communities/[id].astro:14rmhy">
+          <label for="location" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:nmg7bk">Location</label>
+          <input type="text" id="location" name="location" value={community.location || ''} class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6" data-ps="src/pages/admin/communities/[id].astro:14rmhx">
+        <div class="space-y-2" data-ps="src/pages/admin/communities/[id].astro:14rmhw">
+          <label for="community_type" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:nmg7bj">Community Type</label>
+          <input type="text" id="community_type" name="community_type" value={community.community_type || ''} placeholder="e.g. 55+ Community" class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+        <div class="space-y-2" data-ps="src/pages/admin/communities/[id].astro:14rmhv">
+          <label for="image" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:nmg7bi">Hero Image URL</label>
+          <input type="url" id="image" name="image" value={community.hero_image || ''} class="w-full px-3 py-2 border border-border rounded-md" />
+        </div>
+      </div>
+
+      <div class="space-y-2" data-ps="src/pages/admin/communities/[id].astro:14rmhu">
+        <label for="description" class="block font-semibold text-sm" data-ps="src/pages/admin/communities/[id].astro:nmg7bh">Description</label>
+        <textarea id="description" name="description" rows="4" class="w-full px-3 py-2 border border-border rounded-md">{community.description || ''}</textarea>
+      </div>
+
+      <div class="pt-4 flex justify-end gap-4" data-ps="src/pages/admin/communities/[id].astro:14rmht">
+        <a href="/admin/communities/" class="px-4 py-2 border border-border rounded-[6px] font-semibold hover:bg-secondary transition-colors" data-ps="src/pages/admin/communities/[id].astro:4phktr">Cancel</a>
+        <button type="submit" class="bg-primary text-white px-6 py-2 rounded-[6px] font-semibold hover:bg-primary-hover transition-colors" data-ps="src/pages/admin/communities/[id].astro:6btxs7">Save Changes</button>
+      </div>
+    </form>
+  </Container>
+</BaseLayout>

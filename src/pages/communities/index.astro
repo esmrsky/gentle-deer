@@ -1,7 +1,45 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+export const prerender = false;
 
-const communities = [
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const runtime = Astro.locals.runtime;
+let dbCommunities: any[] = [];
+if (runtime?.env?.DB) {
+  try {
+    const { results } = await runtime.env.DB.prepare('SELECT * FROM communities ORDER BY created_at DESC').all();
+    dbCommunities = results;
+  } catch (e) {
+    console.error('Failed to fetch DB communities:', e);
+  }
+}
+
+const mdCommunities = await getCollection('communities');
+
+const allCommunities = [
+  ...dbCommunities.map(c => ({
+    label: c.badge || 'COMMUNITY',
+    name: c.title,
+    location: c.location,
+    description: c.description || c.subtitle,
+    image: c.hero_image,
+    url: `/communities/${c.id}`,
+    homesCount: c.homes_available || '0'
+  })),
+  ...mdCommunities.map(c => ({
+    label: c.data.badge || 'COMMUNITY',
+    name: c.data.title,
+    location: c.data.location,
+    description: c.data.subtitle,
+    image: c.data.heroImage,
+    url: `/communities/${c.slug}`,
+    homesCount: c.data.homesAvailable || '0'
+  }))
+];
+
+// Fallback to static if db and md are empty just for preview
+const staticCommunities = [
   {
     label: 'AFFORDABLE LIVING',
     name: 'Big Run Bluffs',
@@ -84,42 +122,43 @@ const communities = [
     homesCount: 2,
   },
 ];
+
+const displayCommunities = allCommunities.length > 0 ? allCommunities : staticCommunities;
 ---
 
 <BaseLayout title="Our Communities | Greenlawn Homes" description="Nine communities across Central Ohio — from established neighborhoods to lakeside retreats.">
-  <section class="bg-dark py-16 md:py-24">
-    <div class="max-w-[1200px] mx-auto px-6">
-      <h1 class="text-[40px] md:text-[56px] font-serif font-semibold text-white mb-6 leading-tight">
+  <section class="bg-dark py-16 md:py-24" data-ps="src/pages/communities/index.astro:x12i4g">
+    <div class="max-w-[1200px] mx-auto px-6" data-ps="src/pages/communities/index.astro:r8m2gb">
+      <h1 class="text-[40px] md:text-[56px] font-serif font-semibold text-white mb-6 leading-tight" data-ps="src/pages/communities/index.astro:cl488p">
         Our Communities
       </h1>
-      <p class="text-[18px] md:text-[20px] text-white/80 max-w-[600px]">
+      <p class="text-[18px] md:text-[20px] text-white/80 max-w-[600px]" data-ps="src/pages/communities/index.astro:99gznd">
         Nine communities across Central Ohio — from established neighborhoods to lakeside retreats.
       </p>
     </div>
   </section>
 
-  <section class="bg-background py-16 md:py-24">
-    <div class="max-w-[1200px] mx-auto px-6">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {communities.map((community) => (
-          <a href={community.url} class="card group hover:-translate-y-0.5 hover:shadow-md transition-all no-underline">
-            <div class="relative aspect-[16/10] overflow-hidden">
+  <section class="bg-background py-16 md:py-24" data-ps="src/pages/communities/index.astro:x12i4h">
+    <div class="max-w-[1200px] mx-auto px-6" data-ps="src/pages/communities/index.astro:r8m2gc">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-ps="src/pages/communities/index.astro:r8m2gd">
+        {displayCommunities.map((community, __psIdx) => (
+          <a href={community.url} class="card group hover:-translate-y-0.5 hover:shadow-md transition-all no-underline" data-ps={`src/pages/communities/index.astro:gdewci-${__psIdx}`}>
+            <div class="relative aspect-[16/10] overflow-hidden" data-ps={`src/pages/communities/index.astro:r8m2ge-${__psIdx}`}>
               <img
                 src={community.image}
                 alt={community.name}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <span class="absolute top-3 left-3 bg-black/60 text-white px-2 py-1 text-[10px] uppercase font-bold">
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-ps={`src/pages/communities/index.astro:2mmw71-${__psIdx}`} />
+              <span class="absolute top-3 left-3 bg-black/60 text-white px-2 py-1 text-[10px] uppercase font-bold" data-ps={`src/pages/communities/index.astro:wvvb1r-${__psIdx}`}>
                 {community.label}
               </span>
             </div>
-            <div class="p-6">
-              <h2 class="text-[20px] font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+            <div class="p-6" data-ps={`src/pages/communities/index.astro:r8m2gf-${__psIdx}`}>
+              <h2 class="text-[20px] font-semibold text-foreground mb-1 group-hover:text-primary transition-colors" data-ps={`src/pages/communities/index.astro:23aoyx-${__psIdx}`}>
                 {community.name}
               </h2>
-              <p class="text-[14px] text-muted-foreground mb-3">{community.location}</p>
-              <p class="text-[14px] text-foreground mb-4 leading-relaxed">{community.description}</p>
-              <span class="text-[14px] text-primary font-semibold group-hover:underline">
+              <p class="text-[14px] text-muted-foreground mb-3" data-ps={`src/pages/communities/index.astro:99gzne-${__psIdx}`}>{community.location}</p>
+              <p class="text-[14px] text-foreground mb-4 leading-relaxed" data-ps={`src/pages/communities/index.astro:99gznf-${__psIdx}`}>{community.description}</p>
+              <span class="text-[14px] text-primary font-semibold group-hover:underline" data-ps={`src/pages/communities/index.astro:wvvb1q-${__psIdx}`}>
                 See availability → {community.homesCount} homes available
               </span>
             </div>
@@ -129,18 +168,18 @@ const communities = [
     </div>
   </section>
 
-  <section class="bg-secondary py-16 md:py-20">
-    <div class="max-w-[800px] mx-auto px-6 text-center">
-      <h2 class="text-[28px] font-serif font-semibold text-foreground mb-4">
+  <section class="bg-secondary py-16 md:py-20" data-ps="src/pages/communities/index.astro:x12i4i">
+    <div class="max-w-[800px] mx-auto px-6 text-center" data-ps="src/pages/communities/index.astro:r8m2gg">
+      <h2 class="text-[28px] font-serif font-semibold text-foreground mb-4" data-ps="src/pages/communities/index.astro:23aoyw">
         Not sure which community is right for you?
       </h2>
-      <p class="text-[16px] text-muted-foreground mb-8">
+      <p class="text-[16px] text-muted-foreground mb-8" data-ps="src/pages/communities/index.astro:99gzng">
         Answer a few questions and we will match you with the right community.
       </p>
       <a
         href="/#intake-form-section"
         class="inline-block bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold no-underline hover:bg-primary-hover transition-colors"
-      >
+       data-ps="src/pages/communities/index.astro:gdewd4">
         Help Me Find the Right Community
       </a>
     </div>

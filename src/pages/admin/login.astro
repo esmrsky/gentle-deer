@@ -1,0 +1,11 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export const prerender = false;
+
+// Perform the redirect before rendering
+return Astro.redirect('/login');
+---
+<BaseLayout title="Redirecting...">
+  <p data-ps="src/pages/admin/login.astro:gqzf7">Redirecting to <a href="/login" data-ps="src/pages/admin/login.astro:p07g0">login</a>...</p>
+</BaseLayout>

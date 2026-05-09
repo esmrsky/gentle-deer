@@ -1,0 +1,191 @@
+---
+export const prerender = false;
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CommunityHero from '@/components/communities/CommunityHero.astro';
+import CommunityFeatures from '@/components/communities/CommunityFeatures.astro';
+import CommunityHomes from '@/components/communities/CommunityHomes.astro';
+import ResidentSection from '@/components/communities/ResidentSection.astro';
+import ExploreCommunities from '@/components/communities/ExploreCommunities.astro';
+
+const { slug } = Astro.params;
+const cleanSlug = slug?.replace(/\/$/, '');
+const runtime = Astro.locals.runtime;
+
+// Try MDX Collection First
+const mdCommunities = await getCollection('communities');
+let mdEntry = mdCommunities.find((c) => c.slug === cleanSlug);
+
+let community: any = null;
+let features: any = [];
+let descriptionText = '';
+let Content: any = null;
+let managerName = '[TBD Manager Name]';
+let addressLine = '';
+
+if (mdEntry) {
+  const rendered = await mdEntry.render();
+  Content = rendered.Content;
+  managerName = mdEntry.data.managerName || managerName;
+  addressLine = mdEntry.data.address || '';
+  community = {
+    title: mdEntry.data.title,
+    subtitle: mdEntry.data.subtitle || 'COMMUNITY',
+    location: mdEntry.data.location || 'Central Ohio',
+    phone: mdEntry.data.phone || '(614) 443-7421',
+    communityType: mdEntry.data.communityType || 'All ages',
+    established: mdEntry.data.established || '',
+    petPolicy: mdEntry.data.petPolicy || 'Pets welcome',
+    officeHours: mdEntry.data.officeHours || 'M–F 9am–5pm',
+    heroImage: mdEntry.data.heroImage || 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+    badge: mdEntry.data.badge,
+  };
+  features = mdEntry.data.features || [];
+} else if (runtime?.env?.DB) {
+  // Try DB
+  try {
+    const dbComm = await runtime.env.DB.prepare('SELECT * FROM communities WHERE id = ?').bind(cleanSlug).first();
+    if (dbComm) {
+      community = {
+        title: dbComm.title,
+        subtitle: dbComm.subtitle || 'COMMUNITY',
+        location: dbComm.location || 'Central Ohio',
+        phone: dbComm.phone || '(614) 443-7421',
+        communityType: dbComm.community_type || 'All ages',
+        established: dbComm.established || '',
+        petPolicy: dbComm.pet_policy || 'Pets welcome',
+        officeHours: dbComm.office_hours || 'M–F 9am–5pm',
+        heroImage: dbComm.hero_image || 'https://cdn.pagesmith.app/69b93246/images/hero-community-ad9AFtHhG4fpSz2z6YeCHE-1536.webp',
+        badge: dbComm.badge,
+      };
+      descriptionText = dbComm.description || '';
+      managerName = dbComm.manager_name || managerName;
+      addressLine = dbComm.address || '';
+      // Decode features if any
+      if (dbComm.features_json) {
+        try { features = JSON.parse(dbComm.features_json); } catch(e) {}
+      }
+    } else {
+      return Astro.redirect('/404');
+    }
+  } catch(e) {
+    console.error(e);
+    return Astro.redirect('/404');
+  }
+} else {
+  return Astro.redirect('/404');
+}
+
+let dbHomes = [];
+let dbCommunities = [];
+if (runtime?.env?.DB) {
+  try {
+    const { results: hRes } = await runtime.env.DB.prepare('SELECT * FROM inventory_homes WHERE community = ?').bind(community.title).all();
+    dbHomes = hRes || [];
+    const { results: cRes } = await runtime.env.DB.prepare('SELECT * FROM communities WHERE id != ? LIMIT 3').bind(slug).all();
+    dbCommunities = cRes || [];
+  } catch(e) {}
+}
+
+const allHomes = await getCollection('homes');
+const communityHomes = [
+  ...dbHomes.map((home: any) => ({
+    image: home.image || 'https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp',
+    status: home.status,
+    price: home.price,
+    address: home.address || home.title,
+    specs: `${home.beds || 3} bed · ${home.baths || 2} bath · ${home.sqft || 1200} sqft`,
+    url: `/homes/${home.id}`,
+  })),
+  ...allHomes.filter(h => h.data.community === community.title).map(home => ({
+    image: home.data.image || 'https://cdn.pagesmith.app/69b93246/images/nTzzqoqWJTUOwsAi-1536.webp',
+    status: home.data.status,
+    price: home.data.price,
+    address: home.data.address,
+    specs: `${home.data.beds || 3} bed · ${home.data.baths || 2} bath · ${home.data.sqft || 1200} sqft`,
+    url: `/homes/${home.slug}`,
+  }))
+];
+
+const allMdCommunities = await getCollection('communities');
+const exploreCommunities = [
+  ...dbCommunities.map((c: any) => ({
+    category: c.community_type || 'COMMUNITY',
+    name: c.title,
+    location: c.location || 'Central Ohio',
+    url: `/communities/${c.id}`,
+  })),
+  ...allMdCommunities.filter(c => c.slug !== slug).map(c => ({
+    category: c.data.communityType || 'COMMUNITY',
+    name: c.data.title,
+    location: c.data.location || 'Central Ohio',
+    url: `/communities/${c.slug}`,
+  }))
+].slice(0, 3);
+---
+
+<BaseLayout title={`${community.title} | Greenlawn Homes`} description={`Learn more about ${community.title}.`}>
+  <CommunityHero {...community} />
+
+  <section class="py-16 md:py-20 bg-background" data-ps="src/pages/communities/[...slug].astro:zb6mve">
+    <div class="max-w-[1200px] mx-auto px-6" data-ps="src/pages/communities/[...slug].astro:hg2hve">
+      <div class="max-w-[800px]" data-ps="src/pages/communities/[...slug].astro:hg2hvf">
+        <h2 class="text-[32px] font-semibold text-foreground mb-6" data-ps="src/pages/communities/[...slug].astro:rdo1wl">
+          Affordable living, close to everything.
+        </h2>
+        <div class="prose prose-lg text-muted-foreground max-w-none" data-ps="src/pages/communities/[...slug].astro:hg2hvg">
+          <Content />
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 bg-surface rounded-[8px] border border-border max-w-[600px]" data-ps="src/pages/communities/[...slug].astro:hg2hvh">
+        <h3 class="text-[18px] font-semibold text-foreground mb-4" data-ps="src/pages/communities/[...slug].astro:cp94p0">Community Details</h3>
+        <dl class="space-y-3 text-[14px]">
+          {entry.data.address && (
+            <div class="flex gap-4" data-ps="src/pages/communities/[...slug].astro:hg2hvi">
+              <dt class="text-muted-foreground w-32">Address</dt>
+              <dd class="text-foreground">{entry.data.address}</dd>
+            </div>
+          )}
+          <div class="flex gap-4" data-ps="src/pages/communities/[...slug].astro:hg2hvj">
+            <dt class="text-muted-foreground w-32">Phone</dt>
+            <dd>
+              <a href={`tel:${community.phone.replace(/[^0-9]/g, '')}`} class="text-primary hover:underline font-semibold" data-ps="src/pages/communities/[...slug].astro:5rclre">{community.phone}</a>
+            </dd>
+          </div>
+          <div class="flex gap-4" data-ps="src/pages/communities/[...slug].astro:hg2hvk">
+            <dt class="text-muted-foreground w-32">Office Hours</dt>
+            <dd class="text-foreground">{community.officeHours}</dd>
+          </div>
+          {entry.data.managerName && (
+            <div class="flex gap-4" data-ps="src/pages/communities/[...slug].astro:hg2hvl">
+              <dt class="text-muted-foreground w-32">Community Manager</dt>
+              <dd class="text-foreground">{entry.data.managerName}</dd>
+            </div>
+          )}
+          <div class="flex gap-4" data-ps="src/pages/communities/[...slug].astro:hg2hvm">
+            <dt class="text-muted-foreground w-32">Homes Available</dt>
+            <dd class="text-foreground font-semibold">{communityHomes.length} available now</dd>
+          </div>
+        </dl>
+        <div class="mt-6" data-ps="src/pages/communities/[...slug].astro:hg2hvn">
+          <a
+            href="/shop-homes"
+            class="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-[6px] px-[20px] py-[10px] text-[14px] font-semibold hover:bg-primary-hover transition-colors"
+           data-ps="src/pages/communities/[...slug].astro:5rclrf">
+            Check Availability
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {features.length > 0 && <CommunityFeatures features={features} />}
+  
+  {communityHomes.length > 0 && <CommunityHomes homes={communityHomes} communityName={community.title} />}
+  
+  <ResidentSection phone={community.phone} managerName={entry.data.managerName || "[TBD Manager Name]"} communityName={community.title} />
+  
+  {exploreCommunities.length > 0 && <ExploreCommunities communities={exploreCommunities} />}
+</BaseLayout>

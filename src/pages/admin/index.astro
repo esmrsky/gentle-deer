@@ -1,0 +1,38 @@
+---
+export const prerender = false;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const runtime = Astro.locals.runtime;
+if (!runtime?.env?.DB) {
+  return new Response('Database unavailable', { status: 503 });
+}
+
+if (!Astro.locals.user) {
+  return Astro.redirect('/login/');
+}
+---
+
+<BaseLayout title="Admin Dashboard" noIndex={true}>
+  <Container class="max-w-[1200px] py-12 min-h-[60vh]">
+    <div class="flex justify-between items-center mb-8" data-ps="src/pages/admin/index.astro:2g6obe">
+      <h1 class="text-3xl font-bold font-serif" data-ps="src/pages/admin/index.astro:56gmzx">Admin Dashboard</h1>
+      <div class="flex gap-4" data-ps="src/pages/admin/index.astro:2g6obd">
+        <a href="/" class="btn-outline border-primary text-primary hover:bg-primary hover:text-white" data-ps="src/pages/admin/index.astro:ae3qax">View Site</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8" data-ps="src/pages/admin/index.astro:2g6obc">
+      <a href="/admin/inventory/" class="bg-surface border border-border p-8 rounded-[8px] hover:-translate-y-1 hover:shadow-md transition-all group block" data-ps="src/pages/admin/index.astro:77j3cv">
+        <h2 class="text-2xl font-semibold mb-2 group-hover:text-primary" data-ps="src/pages/admin/index.astro:4pezuz">Manage Homes</h2>
+        <p class="text-muted-foreground" data-ps="src/pages/admin/index.astro:6z9vc3">Add, edit, or remove inventory homes available for sale or rent.</p>
+      </a>
+
+      <a href="/admin/communities/" class="bg-surface border border-border p-8 rounded-[8px] hover:-translate-y-1 hover:shadow-md transition-all group block" data-ps="src/pages/admin/index.astro:77j3cw">
+        <h2 class="text-2xl font-semibold mb-2 group-hover:text-primary" data-ps="src/pages/admin/index.astro:4pezv0">Manage Communities</h2>
+        <p class="text-muted-foreground" data-ps="src/pages/admin/index.astro:6z9vc4">Manage your manufactured home communities and neighborhood details.</p>
+      </a>
+    </div>
+  </Container>
+</BaseLayout>

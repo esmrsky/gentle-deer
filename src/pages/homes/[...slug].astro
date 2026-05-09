@@ -1,0 +1,173 @@
+---
+export const prerender = false;
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+
+const { slug } = Astro.params;
+const cleanSlug = slug?.replace(/\/$/, '');
+const runtime = Astro.locals.runtime;
+
+// 1. Check MDX collection first
+const mdHomes = await getCollection('homes');
+const mdEntry = mdHomes.find(h => h.slug === cleanSlug);
+
+let home: any;
+let Content: any;
+let mdxFilePath = '';
+let descriptionText = '';
+
+if (mdEntry) {
+  home = mdEntry.data;
+  mdxFilePath = `src/content/homes/${mdEntry.slug}.mdx`;
+  const rendered = await mdEntry.render();
+  Content = rendered.Content;
+} else if (runtime?.env?.DB) {
+  // 2. Check Database
+  try {
+    const dbHome: any = await runtime.env.DB.prepare('SELECT * FROM inventory_homes WHERE id = ?').bind(cleanSlug).first();
+    if (dbHome) {
+      home = {
+        title: dbHome.title,
+        status: dbHome.status,
+        price: dbHome.price,
+        address: dbHome.address,
+        community: dbHome.community,
+        beds: dbHome.beds,
+        baths: dbHome.baths,
+        sqft: dbHome.sqft,
+        image: dbHome.image,
+        images: dbHome.image ? [dbHome.image] : [],
+      };
+      descriptionText = dbHome.description || 'No description available.';
+    } else {
+      return Astro.redirect('/404');
+    }
+  } catch (e) {
+    console.error(e);
+    return Astro.redirect('/404');
+  }
+} else {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout title={`${home.title} | Greenlawn Homes`} description={`${home.beds} bed, ${home.baths} bath manufactured home at ${home.address}.`}>
+  <!-- Simple header spacing -->
+  <div class="bg-dark text-white pt-24 pb-12" data-ps="src/pages/homes/[...slug].astro:vukpwo">
+    <Container class="max-w-[1200px]">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6" data-ps="src/pages/homes/[...slug].astro:vukpwn">
+        <div data-ps="src/pages/homes/[...slug].astro:vukpwm">
+          <span class="inline-block bg-primary text-white text-[12px] uppercase font-bold tracking-wider px-3 py-1 rounded-[4px] mb-4" data-ps="src/pages/homes/[...slug].astro:hue9pr">
+            {home.status}
+          </span>
+          <h1 class="text-[32px] md:text-[42px] font-bold leading-tight font-serif" data-ps="src/pages/homes/[...slug].astro:7u6kl0">
+            {home.address}
+          </h1>
+          {home.community && (
+            <p class="text-[18px] text-dark-muted mt-2" data-ps="src/pages/homes/[...slug].astro:8i3iwn">
+              Located in <a href={`/communities/${home.community.toLowerCase().replace(/\\s+/g, '-')}`} class="text-accent hover:underline" data-ps="src/pages/homes/[...slug].astro:fm1fku">{home.community}</a>
+            </p>
+          )}
+        </div>
+        <div class="text-left md:text-right" data-ps="src/pages/homes/[...slug].astro:vukpwl">
+          <p class="text-[36px] md:text-[48px] font-bold text-accent font-serif leading-none" data-ps="src/pages/homes/[...slug].astro:8i3iwo">
+            {home.price}
+          </p>
+          <p class="text-[16px] text-dark-muted mt-2" data-ps="src/pages/homes/[...slug].astro:8i3iwp">
+            {home.beds} Beds • {home.baths} Baths • {home.sqft} Sq Ft
+          </p>
+        </div>
+      </div>
+    </Container>
+  </div>
+
+  <section class="py-12 bg-background" data-ps="src/pages/homes/[...slug].astro:ra9fgh">
+    <Container class="max-w-[1200px]">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12" data-ps="src/pages/homes/[...slug].astro:xcbqtp">
+        <!-- Left Column: Media & Details -->
+        <div class="lg:col-span-2 space-y-8" data-ps="src/pages/homes/[...slug].astro:xcbqtq">
+          <!-- Main Image -->
+          <div class="rounded-[8px] overflow-hidden border border-border bg-surface" data-ps="src/pages/homes/[...slug].astro:xcbqtr">
+            <img 
+              src={home.image || 'https://cdn.pagesmith.app/69b93246/images/EEeRzEtYqjOxEmEs-1536.webp'} 
+              alt={home.title} 
+              class="w-full h-auto aspect-[4/3] object-cover" data-ps="src/pages/homes/[...slug].astro:yctu87" />
+          </div>
+          
+          {home.images && home.images.length > 0 && (
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-ps="src/pages/homes/[...slug].astro:xcbqts">
+              {home.images.map((img: string, __psIdx) => (
+                <img src={img} alt="Home view" class="rounded-[6px] border border-border w-full aspect-square object-cover" data-ps={`src/pages/homes/[...slug].astro:yctu86-${__psIdx}`} />
+              ))}
+            </div>
+          )}
+
+          <!-- Home Description -->
+          <article 
+            class="bg-surface rounded-[8px] border border-border p-8" 
+            data-mdx-file={mdxFilePath} 
+            data-mdx-type="homes"
+            data-ps="src/pages/homes/[...slug].astro:xcbqtt"
+          >
+            <h2 class="text-[24px] font-bold text-foreground mb-6 font-serif" data-ps="src/pages/homes/[...slug].astro:milhsl">About this Home</h2>
+            <div class="prose prose-lg text-muted-foreground max-w-none whitespace-pre-wrap" data-ps="src/pages/homes/[...slug].astro:xcbqtu">
+              {Content ? <Content /> : <p data-ps="src/pages/homes/[...slug].astro:8w2qco">{descriptionText}</p>}
+            </div>
+          </article>
+        </div>
+
+        <!-- Right Column: Sidebar -->
+        <div class="lg:col-span-1" data-ps="src/pages/homes/[...slug].astro:xcbqtv">
+          <div class="bg-surface rounded-[8px] border border-border p-6 sticky top-[100px]" data-ps="src/pages/homes/[...slug].astro:xcbqtw">
+            <h3 class="text-[20px] font-bold text-foreground mb-6" data-ps="src/pages/homes/[...slug].astro:xu3myy">Interested in this home?</h3>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlcg">
+                <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9ps">Price</span>
+                <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9pt">{home.price}</span>
+              </li>
+              <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlcf">
+                <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9pu">Status</span>
+                <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9pv">{home.status}</span>
+              </li>
+              <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlce">
+                <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9pw">Beds</span>
+                <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9px">{home.beds}</span>
+              </li>
+              <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlcd">
+                <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9qj">Baths</span>
+                <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9qk">{home.baths}</span>
+              </li>
+              <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlcc">
+                <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9ql">Size</span>
+                <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9qm">{home.sqft} sqft</span>
+              </li>
+              {home.community && (
+                <li class="flex justify-between border-b border-border pb-2 text-[15px]" data-ps="src/pages/homes/[...slug].astro:lrmlcb">
+                  <span class="text-muted-foreground" data-ps="src/pages/homes/[...slug].astro:hue9qn">Community</span>
+                  <span class="font-bold text-foreground" data-ps="src/pages/homes/[...slug].astro:hue9qo">{home.community}</span>
+                </li>
+              )}
+            </ul>
+
+            <div class="space-y-4" data-ps="src/pages/homes/[...slug].astro:xcbqtx">
+              <a href={`/contact?home=${home.title}`} class="block w-full text-center bg-primary text-primary-foreground font-semibold py-3 rounded-[6px] hover:bg-primary-hover transition-colors" data-ps="src/pages/homes/[...slug].astro:fm1flg">
+                Contact Sales Team
+              </a>
+              <a href="/contact?path=D" class="block w-full text-center border-2 border-primary text-primary font-semibold py-3 rounded-[6px] hover:bg-primary hover:text-primary-foreground transition-colors" data-ps="src/pages/homes/[...slug].astro:fm1flh">
+                Get Prequalified
+              </a>
+            </div>
+
+            <div class="mt-6 text-center" data-ps="src/pages/homes/[...slug].astro:xcbqty">
+              <p class="text-[14px] text-muted-foreground mb-2" data-ps="src/pages/homes/[...slug].astro:8i3iwq">Or call us directly at:</p>
+              <a href="tel:6144437421" class="text-[18px] font-bold text-foreground hover:text-primary transition-colors" data-ps="src/pages/homes/[...slug].astro:fm1fli">(614) 443-7421</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
